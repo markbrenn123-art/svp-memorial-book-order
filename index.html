@@ -163,17 +163,29 @@
   .step-block h3{margin:4px 0 12px;font-size:24px;}
 
   .upload-box{
+    position:relative;
     border:2px dashed var(--line);border-radius:8px;padding:22px;text-align:center;
     cursor:pointer;background:#fffefb;transition:border-color .15s;
   }
   .upload-box:hover{border-color:var(--terracotta);}
   .upload-box.filled{border-style:solid;border-color:var(--sage);}
-  .upload-box input{display:none;}
+  .upload-box input{
+    position:absolute;inset:0;width:100%;height:100%;
+    margin:0;padding:0;border:0;
+    opacity:0;cursor:pointer;
+  }
   .upload-box .u-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;}
   .upload-box .u-sub{font-size:14px;color:var(--ink-soft);}
   .field-help{font-size:14px;color:var(--ink-soft);margin-top:8px;}
   .second-photo{margin-top:16px;}
   .second-photo summary{font-family:'Nunito',sans-serif;font-weight:700;font-size:15px;cursor:pointer;color:var(--terracotta-dark);}
+  .second-photo-preview{margin-top:10px;display:none;align-items:center;gap:10px;}
+  .second-photo-preview.filled{display:flex;}
+  .second-photo-preview img{
+    width:56px;height:56px;object-fit:cover;border-radius:6px;
+    border:1px solid var(--line);
+  }
+  .second-photo-preview span{font-size:14px;color:var(--ink-soft);}
 
   label.f{display:block;margin:16px 0 6px;font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;}
   .charcount{float:right;font-weight:400;color:var(--ink-soft);}
@@ -236,7 +248,7 @@
       </svg>
     </div>
     <h1>A Life Well-Loved</h1>
-    <p class="sub">One photo becomes a 32-page keepsake &mdash; a hand-painted watercolor journey through your dog's whole life, from puppy days to the Rainbow Bridge. See the cover before you commit to the rest.</p>
+    <p class="sub">One photo becomes a 32-page keepsake &mdash; a watercolor journey through your dog's whole life, painted just for them, from puppy days to the Rainbow Bridge. See the cover before you commit to the rest.</p>
 
     <div class="hero-frame">
       <div class="placeholder-art" data-fallback-for="assets/memorial-sample-cover.jpg">
@@ -329,6 +341,7 @@
               <div class="u-title">Tap to choose a second photo</div>
               <div class="u-sub">Optional &middot; a younger photo works best</div>
             </label>
+            <div id="photo2Preview" class="second-photo-preview"></div>
           </details>
         </div>
 
@@ -419,7 +432,11 @@ wireUpload('uploadBox1','photo1', (src) => {
   const ph = document.getElementById('previewPlaceholder');
   img.src = src; img.style.display='block'; ph.style.display='none';
 });
-wireUpload('uploadBox2','photo2');
+wireUpload('uploadBox2','photo2', (src) => {
+  const wrap = document.getElementById('photo2Preview');
+  wrap.classList.add('filled');
+  wrap.innerHTML = `<img src="${src}" alt="Second photo preview"><span>Younger photo added</span>`;
+});
 
 /* ---------------------------------------------------------------
    Package selection
