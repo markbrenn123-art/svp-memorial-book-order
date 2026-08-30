@@ -163,6 +163,7 @@
   .step-block h3{margin:4px 0 12px;font-size:24px;}
 
   .upload-box{
+    display:block;
     position:relative;
     overflow:hidden;
     border:2px dashed var(--line);border-radius:8px;padding:22px;text-align:center;
@@ -171,13 +172,7 @@
   .upload-box:hover{border-color:var(--terracotta);}
   .upload-box.filled{border-style:solid;border-color:var(--sage);}
   .upload-box input{
-    position:fixed !important;
-    left:-9999px !important;
-    top:-9999px !important;
-    width:1px !important;height:1px !important;
-    opacity:0;
-    margin:0;padding:0;border:0;
-    outline:none;
+    display:none;
   }
   .upload-box .u-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;}
   .upload-box .u-sub{font-size:14px;color:var(--ink-soft);}
