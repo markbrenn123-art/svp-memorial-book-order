@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>A Life Well-Loved — Randy — Flip Through</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Patrick+Hand&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Comfortaa:wght@400;500&family=Patrick+Hand&display=swap" rel="stylesheet">
 <style>
   :root{
     --cream:#f8f2e3;
@@ -111,19 +111,29 @@
   .leaf.is-cover .side img{ object-fit:contain; background:var(--cream); }
 
   .page-story{
-    font-family:'Patrick Hand', cursive;
-    font-size:clamp(13px,2.2vw,19px);
-    line-height:1.65;
+    font-family:'Comfortaa', sans-serif;
+    font-weight:500;
+    font-size:clamp(10px,1.45vw,14px);
+    line-height:1.75;
+    letter-spacing:0.2px;
     color:var(--brown);
     text-align:center;
-    padding:8% 11%;
+    padding:0 15%;
     position:relative;
     width:100%;height:100%;
-    display:flex;align-items:center;justify-content:center;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding-top:22%;
+    background:
+      radial-gradient(ellipse 55% 40% at 18% 18%, rgba(120,105,80,0.07), transparent 60%),
+      radial-gradient(ellipse 60% 45% at 85% 82%, rgba(120,105,80,0.06), transparent 60%),
+      var(--cream);
   }
   .page-story .pgnum{
-    position:absolute;left:14px;bottom:10px;
-    font-size:12px;color:var(--brown-soft);opacity:.55;
+    position:absolute;left:14px;bottom:12px;
+    font-family:'Comfortaa', sans-serif;
+    font-size:10px;color:#5b7d82;opacity:.75;
   }
 
   .gutter{
