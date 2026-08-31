@@ -116,23 +116,29 @@
   .section-head p{color:var(--ink-soft);font-size:18px;}
 
   /* ---------- Flip book embed ---------- */
-  .flipbook-embed{
-    max-width:820px;margin:0 auto 8px;
-    border-radius:10px;overflow:hidden;
+  /* ---------- Gallery ---------- */
+  .gallery-scroll{
+    display:flex;gap:18px;overflow-x:auto;padding:8px 4px 20px;
+    scroll-snap-type:x mandatory;
   }
-  .flipbook-embed iframe{
-    width:100%;
-    aspect-ratio:1.7/1;
-    border:none;display:block;
-    background:transparent;
+  .gallery-scroll figure{
+    flex:0 0 220px;scroll-snap-align:start;margin:0;
   }
-  @media (max-width:600px){
-    .flipbook-embed iframe{ aspect-ratio:1.05/1; }
+  .gallery-scroll .frame{
+    border-radius:6px;overflow:hidden;border:1px solid var(--line);
+    box-shadow:var(--shadow);background:var(--paper);aspect-ratio:1/1;
   }
+  .gallery-scroll .frame img{width:100%;height:100%;object-fit:cover;display:block;}
+  .gallery-scroll figcaption{
+    text-align:center;margin-top:8px;font-size:16px;color:var(--ink-soft);
+    font-style:italic;
+  }
+  .scroll-hint{text-align:center;color:var(--ink-soft);font-size:14px;margin-top:-6px;}
 
   /* ---------- How it works ---------- */
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
   .step{text-align:center;}
+  .step .stepnum{font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;color:var(--terracotta);margin-bottom:4px;}
   .step .icon{font-size:34px;}
   .step h3{font-size:20px;margin:8px 0 4px;font-family:'Nunito',sans-serif;font-weight:800;}
   .step p{color:var(--ink-soft);font-size:16px;margin:0;}
@@ -268,15 +274,15 @@
     <div class="section-head">
       <div class="eyebrow">A Real Book We Made</div>
       <h2>Flip Through Randy's Story</h2>
-      <p>Every book follows one dog's whole life &mdash; playful puppy days, favorite adventures, quiet years, and a peaceful goodbye at the Rainbow Bridge. Tap the pages below to flip through a real, printed copy.</p>
+      <p>Every book follows one dog's whole life &mdash; playful puppy days, favorite adventures, quiet years, and a peaceful goodbye at the Rainbow Bridge. These are real pages from a printed copy.</p>
     </div>
 
-    <div class="flipbook-embed">
-      <iframe src="randy-life-well-loved-flipbook.html"
-              title="Flip through A Life Well-Loved: Randy's Story"
-              loading="lazy" scrolling="no"></iframe>
-    </div>
+    <div class="gallery-scroll" id="gallery"></div>
+    <p class="scroll-hint">&larr; scroll to see more &rarr;</p>
     <p class="microcopy" style="text-align:center;">Sample book stars Randy. Yours will star your dog, painted in this same style.</p>
+    <p style="text-align:center;margin-top:14px;">
+      <a href="randy-life-well-loved-flipbook.html" target="_blank" rel="noopener" style="font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;color:var(--terracotta-dark);text-decoration:underline;">Open the full page-turning preview &rarr;</a>
+    </p>
   </div>
 </section>
 
@@ -287,10 +293,10 @@
       <h2>How It Works</h2>
     </div>
     <div class="steps">
-      <div class="step"><div class="icon">📸</div><h3>Upload</h3><p>Send one or two clear photos of your dog</p></div>
-      <div class="step"><div class="icon">🎨</div><h3>We Paint</h3><p>Their whole life becomes a watercolor story</p></div>
-      <div class="step"><div class="icon">👀</div><h3>You Approve</h3><p>See the cover before the rest is made</p></div>
-      <div class="step"><div class="icon">📦</div><h3>We Print &amp; Ship</h3><p>A real keepsake book, mailed to you</p></div>
+      <div class="step"><div class="stepnum">1</div><div class="icon">📸</div><h3>Upload</h3><p>Send one or two clear photos of your dog</p></div>
+      <div class="step"><div class="stepnum">2</div><div class="icon">🎨</div><h3>We Paint</h3><p>Their whole life becomes a watercolor story</p></div>
+      <div class="step"><div class="stepnum">3</div><div class="icon">👀</div><h3>You Approve</h3><p>See the cover before the rest is made</p></div>
+      <div class="step"><div class="stepnum">4</div><div class="icon">📦</div><h3>We Print &amp; Ship</h3><p>A real keepsake book, mailed to you</p></div>
     </div>
 
     <div class="badges">
@@ -324,7 +330,7 @@
 
       <form class="book-form" id="bookForm">
         <div class="step-block">
-          <div class="step-label">STEP 1 OF 3</div>
+          <div class="step-label">Step 1 of 3</div>
           <h3>Upload your dog's photo</h3>
           <label class="upload-box" id="uploadBox1">
             <input type="file" accept="image/*" id="photo1">
@@ -346,7 +352,7 @@
         </div>
 
         <div class="step-block">
-          <div class="step-label">STEP 2 OF 3</div>
+          <div class="step-label">Step 2 of 3</div>
           <h3>Tell us about them</h3>
 
           <label class="f">Your dog's name <span class="charcount"><span id="nameCount">0</span> / 12</span></label>
@@ -368,7 +374,7 @@
         </div>
 
         <div class="step-block">
-          <div class="step-label">STEP 3 OF 3</div>
+          <div class="step-label">Step 3 of 3</div>
           <h3>Choose your book</h3>
           <div class="pkg-row" id="pkgRow">
             <div class="pkg selected" data-price="29.95" data-name="Softcover">
@@ -398,6 +404,49 @@
 </footer>
 
 <script>
+/* ---------------------------------------------------------------
+   Gallery content — life-journey arc, ending at the Rainbow Bridge.
+   Drop matching image files into /assets with these exact names
+   and they'll appear automatically; until then, a soft placeholder
+   frame with the caption is shown instead of a broken image.
+---------------------------------------------------------------- */
+const GALLERY = [
+  { file: "memorial-sample-cover.jpg", caption: "Front Cover" },
+  { file: "memorial-01-pawprint.jpg", caption: "It Started With Tiny Paws" },
+  { file: "memorial-02-comehome.jpg", caption: "Coming Home" },
+  { file: "memorial-03-puppydays.jpg", caption: "Puppy Days" },
+  { file: "memorial-04-bestfriend.jpg", caption: "The Best Friend" },
+  { file: "memorial-05-wildflowers.jpg", caption: "Chasing Summer" },
+  { file: "memorial-06-waterplay.jpg", caption: "Water Days" },
+  { file: "memorial-07-eveningwalk.jpg", caption: "Long Walks Together" },
+  { file: "memorial-08-couch.jpg", caption: "Evenings Together" },
+  { file: "memorial-09-undertree.jpg", caption: "Slower Mornings" },
+  { file: "memorial-10-quietafternoon.jpg", caption: "Quiet Afternoons" },
+  { file: "memorial-11-fireside.jpg", caption: "By the Fire" },
+  { file: "memorial-12-sunlitsleep.jpg", caption: "Peaceful Sleep" },
+  { file: "memorial-13-heartlight.jpg", caption: "A Life Full of Love" },
+  { file: "memorial-14-lastgoodbye.jpg", caption: "One Last Goodbye" },
+  { file: "memorial-15-leash.jpg", caption: "The Leash Still Hangs" },
+  { file: "memorial-16-rainbowbridge.jpg", caption: "The Rainbow Bridge" }
+];
+
+const galleryEl = document.getElementById('gallery');
+GALLERY.forEach(item => {
+  const fig = document.createElement('figure');
+  fig.innerHTML = `
+    <div class="frame">
+      <div class="placeholder-art" style="width:100%;height:100%;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:34px;height:34px;"><path d="M12 21s-7-4.35-9.5-8.5C.7 8.9 2.4 5 6 5c2 0 3.3 1.1 4 2 .7-.9 2-2 4-2 3.6 0 5.3 3.9 3.5 7.5C19 16.65 12 21 12 21z"/></svg>
+        <span>assets/${item.file}</span>
+      </div>
+      <img src="assets/${item.file}" alt="${item.caption}" loading="lazy"
+           style="display:none;width:100%;height:100%;object-fit:cover;"
+           onload="this.style.display='block';this.previousElementSibling.style.display='none';">
+    </div>
+    <figcaption><em>${item.caption}</em></figcaption>`;
+  galleryEl.appendChild(fig);
+});
+
 /* ---------------------------------------------------------------
    Live cover preview
 ---------------------------------------------------------------- */
