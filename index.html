@@ -2,525 +2,523 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐾</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Life Well-Loved | Personalized Dog Memorial Book | Sun Valley Pet</title>
-<meta name="description" content="A personalized watercolor memorial book celebrating your dog's whole life, from puppy days to the Rainbow Bridge. See the cover before the rest is made. Softcover from $29.95.">
+<title>Personalized Dog Memorial Book | Watercolor Pet Tribute | From $29.95</title>
+<meta name="description" content="Upload one photo — we paint a 32-page watercolor memorial book celebrating your dog's whole life. See the cover before we make the rest. Softcover from $29.95.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Patrick+Hand&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Patrick+Hand&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --cream:#FBF6EE;
-    --paper:#FFFDF9;
-    --ink:#3B322C;
-    --ink-soft:#6b6055;
-    --line:#E7DCC9;
-    --terracotta:#C96A47;
-    --terracotta-dark:#AE5638;
-    --heather:#8E7CA6;
-    --gold:#D9A441;
-    --sage:#7C9473;
-    --rose:#C98A93;
-    --shadow: 0 10px 24px rgba(59,50,44,0.10);
+    --paper:#FFFDF4; --ink:#5A3D2E; --ink-soft:#6B5040;
+    --blue:#5C7FA8; --blue-deep:#48688C;
+    --sage:#B9CDA8; --blush:#E8B9B0; --butter:#EFDFA9; --wash-blue:#C9D8E8;
+    --line:#E9E0CE;
   }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--cream);
-    color:var(--ink);
-    font-family:'Patrick Hand', cursive;
-    font-size:19px;
-    line-height:1.5;
-  }
-  h1,h2,h3,.display{
-    font-family:'Chewy', cursive;
-    font-weight:400;
-    line-height:1.15;
-    color:var(--ink);
-  }
-  .nums, button, input, select{ font-family:'Nunito', sans-serif; }
-  a{color:var(--terracotta-dark);}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
-  .eyebrow{
-    font-family:'Nunito',sans-serif;
-    font-weight:700;
-    font-size:14px;
-    color:var(--ink-soft);
-    letter-spacing:.02em;
-  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Nunito',sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  .washes{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .washes span{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5}
+  .w1{width:52vw;height:38vw;background:var(--wash-blue);top:-12vw;right:-14vw}
+  .w2{width:44vw;height:34vw;background:var(--blush);bottom:-10vw;left:-12vw}
+  .w3{width:36vw;height:30vw;background:var(--sage);top:38%;left:-16vw}
+  .w4{width:30vw;height:26vw;background:var(--butter);bottom:22%;right:-10vw}
+  main{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:24px 20px 80px}
+  section.block{margin-top:56px}
+  .kicker{font:700 12px 'Nunito';letter-spacing:.14em;text-transform:uppercase;color:var(--blue-deep);text-align:center}
+  .block h2{font-family:'Chewy',cursive;font-weight:400;font-size:clamp(24px,4vw,34px);text-align:center;margin:6px 0 8px}
+  .block .sub{text-align:center;color:var(--ink-soft);max-width:560px;margin:0 auto 28px;font-size:15.5px}
 
-  /* ---------- Rainbow Bridge signature motif ---------- */
-  .bridge-arc{
-    position:relative;
-    height:110px;
-    margin:0 auto -50px;
-    max-width:640px;
-    pointer-events:none;
+  /* ---------- HERO ---------- */
+  header.hero{text-align:center;padding:30px 0 6px}
+  .brand{font:700 13px 'Nunito';letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  h1{font-family:'Chewy',cursive;font-weight:400;font-size:clamp(32px,6vw,54px);line-height:1.08;margin:12px 0 10px}
+  h1 .name-slot{color:var(--blue-deep)}
+  .promise{font-family:'Patrick Hand',cursive;font-size:clamp(18px,2.8vw,23px);font-weight:600;color:var(--ink);max-width:520px;margin:0 auto}
+  .promise .num{font-family:'Nunito',sans-serif;font-weight:800;color:inherit}
+  .includes-line{font-size:13.5px;color:var(--blue-deep);font-weight:700;max-width:480px;margin:10px auto 0}
+  .hero-cta{margin-top:22px}
+  .hero-cta a{
+    display:inline-flex;flex-direction:column;align-items:center;gap:2px;
+    font-family:'Chewy';font-size:19px;color:#fff;background:var(--blue);
+    padding:12px 30px 14px;border-radius:12px;text-decoration:none;box-shadow:0 4px 0 var(--blue-deep);
+    line-height:1.3;
   }
-  .bridge-arc svg{width:100%;height:100%;display:block;}
+  .hero-cta a .cta-main{font-family:'Chewy';font-size:20px}
+  .hero-cta a .cta-sub{font-family:'Nunito';font-size:11.5px;font-weight:700;letter-spacing:.02em;opacity:.92}
+  .hero-cta a:hover{background:var(--blue-deep)}
+  .hero-note{margin-top:10px;font-size:12.5px;color:var(--ink-soft)}
+  .hero-cover{max-width:345px;margin:22px auto 0;border-radius:2px;
+    box-shadow:6px 8px 0 rgba(90,61,46,.08), 0 2px 14px rgba(90,61,46,.14); overflow:hidden}
 
-  /* ---------- Header / Hero ---------- */
-  header.hero{padding:56px 0 40px;text-align:center;}
-  header.hero h1{font-size:56px;margin:6px 0 14px;}
-  header.hero p.sub{
-    max-width:560px;margin:0 auto 30px;
-    font-size:21px;color:var(--ink-soft);
-  }
-  .hero-frame{
-    max-width:420px;margin:0 auto 22px;
-    border-radius:6px;
-    box-shadow:var(--shadow);
-    overflow:hidden;
-    border:1px solid var(--line);
-    background:var(--paper);
-  }
-  .hero-frame img{width:100%;display:block;}
-  .placeholder-art{
-    aspect-ratio:1/1;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:10px;
-    background:
-      radial-gradient(circle at 30% 25%, #f3e6d0 0%, transparent 55%),
-      radial-gradient(circle at 75% 70%, #e9d9e6 0%, transparent 50%),
-      var(--paper);
-    color:var(--ink-soft);
-  }
-  .placeholder-art svg{width:64px;height:64px;opacity:.55;}
-  .placeholder-art span{font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;opacity:.65;}
+  /* ---------- SAMPLE FLIP-THROUGH ---------- */
+  .flip{display:flex;gap:14px;overflow-x:auto;padding:6px 4px 14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .flip::-webkit-scrollbar{height:8px}
+  .flip::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+  .flip figure{flex:0 0 auto;width:200px;scroll-snap-align:start;background:#fff;border:1px solid var(--line);
+    border-radius:2px;overflow:hidden;box-shadow:0 2px 8px rgba(90,61,46,.06)}
+  .flip img{aspect-ratio:1/1;object-fit:cover}
+  .flip figcaption{font-size:12px;color:var(--ink-soft);text-align:center;padding:8px 6px}
+  .flip-hint{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:2px}
+  .sample-credit{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:6px}
 
-  .btn{
-    display:inline-block;
-    font-family:'Nunito',sans-serif;
-    font-weight:800;
-    font-size:18px;
-    color:#fff;
-    background:var(--terracotta);
-    border:none;
-    padding:16px 30px;
-    border-radius:6px;
-    cursor:pointer;
-    text-decoration:none;
-    box-shadow:0 6px 0 var(--terracotta-dark);
-    transition:transform .08s ease;
-  }
-  .btn:active{transform:translateY(4px);box-shadow:0 2px 0 var(--terracotta-dark);}
-  .btn small{display:block;font-family:'Patrick Hand',cursive;font-weight:400;font-size:14px;opacity:.9;margin-top:2px;}
-  .microcopy{font-size:15px;color:var(--ink-soft);margin-top:14px;}
+  /* ---------- HOW IT WORKS ---------- */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:720px){.steps{grid-template-columns:1fr 1fr}}
+  .step-card{text-align:center;background:rgba(255,255,255,.6);border:1px solid var(--line);border-radius:14px;padding:24px 14px}
+  .step-card .num{width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;
+    display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:15px}
+  .step-card .emoji{font-size:46px;margin-bottom:10px;line-height:1}
+  .step-card h4{font-size:18px;margin-bottom:6px}
+  .step-card p{font-size:14.5px;color:var(--ink-soft);line-height:1.4}
 
-  /* ---------- Section shell ---------- */
-  section{padding:64px 0;}
-  section.alt{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .section-head{text-align:center;max-width:620px;margin:0 auto 36px;}
-  .section-head h2{font-size:34px;margin:6px 0 10px;}
-  .section-head p{color:var(--ink-soft);font-size:18px;}
+  /* ---------- TRUST BADGES ---------- */
+  .badges{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:720px){.badges{grid-template-columns:1fr 1fr}}
+  .badge{text-align:center;padding:14px 10px}
+  .badge .emoji{font-size:22px;margin-bottom:6px}
+  .badge h5{font-size:13px;margin-bottom:3px}
+  .badge p{font-size:11.5px;color:var(--ink-soft)}
 
-  /* ---------- Flip book embed ---------- */
-  /* ---------- Gallery ---------- */
-  .gallery-scroll{
-    display:flex;gap:18px;overflow-x:auto;padding:8px 4px 20px;
-    scroll-snap-type:x mandatory;
+  /* ---------- FORM AREA ---------- */
+  .order-anchor{scroll-margin-top:16px}
+  .layout{display:grid;gap:26px;margin-top:10px}
+  @media(min-width:820px){.layout{grid-template-columns:1fr 380px;align-items:start}}
+  .preview-wrap{order:-1}
+  @media(min-width:820px){.preview-wrap{order:2;position:sticky;top:20px}}
+  .cover{
+    aspect-ratio:1/1;max-width:340px;margin:0 auto;background:var(--paper);
+    border:1px solid var(--line);border-radius:2px;
+    box-shadow:6px 8px 0 rgba(90,61,46,.08), 0 2px 10px rgba(90,61,46,.10);
+    position:relative;display:flex;flex-direction:column;align-items:center;
+    padding:26px 20px 18px;overflow:hidden;
   }
-  .gallery-scroll figure{
-    flex:0 0 220px;scroll-snap-align:start;margin:0;
+  .cover::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(var(--line),transparent 15%,transparent 85%,var(--line))}
+  .cover h2{font-family:'Chewy',cursive;font-weight:400;font-size:22px;line-height:1.15;text-align:center}
+  .cover h2 b{display:block;font-size:30px;color:var(--blue-deep);font-weight:400;transition:font-size .2s}
+  .cover h2 b.long{font-size:24px}
+  .photo-ring{
+    width:62%;aspect-ratio:1/1;margin-top:14px;border-radius:50%;
+    background:radial-gradient(circle at 50% 45%, #fff 55%, var(--sage) 100%);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    border:3px dashed var(--sage);
   }
-  .gallery-scroll .frame{
-    border-radius:6px;overflow:hidden;border:1px solid var(--line);
-    box-shadow:var(--shadow);background:var(--paper);aspect-ratio:1/1;
-  }
-  .gallery-scroll .frame img{width:100%;height:100%;object-fit:cover;display:block;}
-  .gallery-scroll figcaption{
-    text-align:center;margin-top:8px;font-size:16px;color:var(--ink-soft);
-    font-style:italic;
-  }
-  .scroll-hint{text-align:center;color:var(--ink-soft);font-size:14px;margin-top:-6px;}
+  .photo-ring.filled{border-style:solid;border-color:var(--blush)}
+  .photo-ring img{width:100%;height:100%;object-fit:cover}
+  .photo-ring .hint{font-family:'Patrick Hand';color:var(--ink-soft);font-size:15px;text-align:center;padding:0 18px}
+  .cover .fancy-line{font-family:'Patrick Hand';font-size:13px;color:var(--ink-soft);margin-top:12px;min-height:18px;text-align:center}
+  .preview-caption{text-align:center;font-size:12.5px;color:var(--ink-soft);margin-top:10px}
 
-  /* ---------- How it works ---------- */
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
-  .step{text-align:center;}
-  .step .stepnum{font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;color:var(--terracotta);margin-bottom:4px;}
-  .step .icon{font-size:34px;}
-  .step h3{font-size:20px;margin:8px 0 4px;font-family:'Nunito',sans-serif;font-weight:800;}
-  .step p{color:var(--ink-soft);font-size:16px;margin:0;}
+  form{display:flex;flex-direction:column;gap:16px}
+  .step{background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:14px;padding:16px;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+  .step-tag{font-family:'Patrick Hand';color:var(--blue-deep);font-size:15px;letter-spacing:.03em}
+  .step h3{font-size:18px;font-weight:700;margin:2px 0 10px}
+  label{font-size:13.5px;font-weight:600;display:block;margin-bottom:6px}
+  input[type=text]{width:100%;padding:11px 12px;font:600 16px 'Nunito';color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:9px;outline:none}
+  input[type=text]:focus{border-color:var(--blue)}
+  .field+.field{margin-top:10px}
+  .count{float:right;font-weight:400;color:var(--ink-soft)}
+  .help{font-size:12.5px;color:var(--ink-soft);margin-top:5px}
 
-  .badges{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px;}
-  .badge{text-align:center;}
-  .badge .icon{font-size:26px;}
-  .badge h4{font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;margin:6px 0 2px;}
-  .badge p{color:var(--ink-soft);font-size:14px;margin:0;}
+  .drop{border:2px dashed var(--sage);border-radius:12px;background:#fff;padding:22px 16px;text-align:center;cursor:pointer;transition:border-color .15s}
+  .drop:hover,.drop:focus-visible{border-color:var(--blue)}
+  .drop.has-file{border-style:solid;border-color:var(--blush)}
+  .drop strong{display:block;font-size:15px}
+  .drop span{font-size:13px;color:var(--ink-soft)}
+  .photo-tips{margin-top:12px;font-size:12.5px;color:var(--ink-soft)}
+  .photo-tips b{color:var(--ink)}
+  .photo-tips .extra-tip{display:block;margin-top:4px}
 
-  /* ---------- Order form ---------- */
-  #order .order-shell{
-    display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:start;
-  }
-  .preview-card{
-    position:sticky;top:24px;
-    background:var(--paper);border:1px solid var(--line);border-radius:10px;
-    box-shadow:var(--shadow);padding:22px;text-align:center;
-  }
-  .preview-card .frame{max-width:260px;margin:0 auto 12px;}
-  .preview-title{font-family:'Chewy',cursive;font-size:22px;margin:6px 0 2px;}
-  .preview-note{color:var(--ink-soft);font-size:14px;}
+  .second-photo{margin-top:14px}
+  .second-photo > summary{font-family:'Patrick Hand';color:var(--blue-deep);font-size:15px;cursor:pointer}
+  .second-photo .drop{margin-top:10px;padding:16px}
+  .second-photo-preview{margin-top:10px;display:none;align-items:center;gap:10px}
+  .second-photo-preview.filled{display:flex}
+  .second-photo-preview img{width:52px;height:52px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+  .second-photo-preview span{font-size:12.5px;color:var(--ink-soft)}
 
-  form.book-form{background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:28px;}
-  .step-block{padding:22px 0;border-bottom:1px solid var(--line);}
-  .step-block:last-of-type{border-bottom:none;}
-  .step-label{font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;color:var(--terracotta-dark);letter-spacing:.02em;}
-  .step-block h3{margin:4px 0 12px;font-size:24px;}
+  .choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .choice input{position:absolute;opacity:0}
+  .choice div{border:1.5px solid var(--line);border-radius:10px;background:#fff;padding:12px;text-align:center;cursor:pointer;font-weight:600;font-size:15px}
+  .choice.small div{padding:9px 8px;font-size:13px;font-weight:600}
+  .choice input:checked + div{border-color:var(--blue);background:#F1F6FB;box-shadow:0 0 0 1px var(--blue)}
+  .choice input:focus-visible + div{outline:2px solid var(--blue-deep);outline-offset:2px}
+  .tier div{padding:16px 12px}
+  .tier .t-name{font-size:16px}
+  .tier .t-price{font-family:'Chewy';font-size:22px;color:var(--blue-deep);margin:2px 0}
+  .tier .t-desc{font-size:12.5px;color:var(--ink-soft);font-weight:400}
+  .tier .t-desc b{display:block;font-size:13.5px;color:var(--blue-deep);font-weight:800;margin-top:2px}
 
-  .upload-box{
-    display:block;
-    position:relative;
-    overflow:hidden;
-    border:2px dashed var(--line);border-radius:8px;padding:22px;text-align:center;
-    cursor:pointer;background:#fffefb;transition:border-color .15s;
-  }
-  .upload-box:hover{border-color:var(--terracotta);}
-  .upload-box.filled{border-style:solid;border-color:var(--sage);}
-  .upload-box input{
-    display:none;
-  }
-  .upload-box .u-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;}
-  .upload-box .u-sub{font-size:14px;color:var(--ink-soft);}
-  .field-help{font-size:14px;color:var(--ink-soft);margin-top:8px;}
-  .second-photo{margin-top:16px;}
-  .second-photo summary{font-family:'Nunito',sans-serif;font-weight:700;font-size:15px;cursor:pointer;color:var(--terracotta-dark);}
-  .second-photo-preview{margin-top:10px;display:none;align-items:center;gap:10px;}
-  .second-photo-preview.filled{display:flex;}
-  .second-photo-preview img{
-    width:56px;height:56px;object-fit:cover;border-radius:6px;
-    border:1px solid var(--line);
-  }
-  .second-photo-preview span{font-size:14px;color:var(--ink-soft);}
+  .cta{font-family:'Chewy',cursive;font-size:22px;letter-spacing:.02em;color:#fff;background:var(--blue);border:none;border-radius:12px;padding:16px;cursor:pointer;width:100%;box-shadow:0 4px 0 var(--blue-deep)}
+  .cta:hover{background:var(--blue-deep)}
+  .cta:disabled{background:#B9C4CF;box-shadow:none;cursor:not-allowed}
+  .cta-note{text-align:center;font-size:12.5px;color:var(--ink-soft);margin-top:10px}
+  .error{display:none;background:#FBF0EE;border:1px solid var(--blush);color:#8A4A3D;border-radius:9px;padding:10px 12px;font-size:13.5px;margin-top:10px}
+  .error.show{display:block}
 
-  label.f{display:block;margin:16px 0 6px;font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;}
-  .charcount{float:right;font-weight:400;color:var(--ink-soft);}
-  input[type=text]{
-    width:100%;padding:12px 14px;font-size:17px;border:1px solid var(--line);
-    border-radius:6px;background:#fffefb;font-family:'Patrick Hand',cursive;
-  }
-  .radio-row{display:flex;gap:10px;margin-top:8px;}
-  .radio-row label{
-    flex:1;text-align:center;padding:10px;border:1px solid var(--line);border-radius:6px;
-    cursor:pointer;font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;background:#fffefb;
-  }
-  .radio-row input{margin-right:6px;}
-  .radio-row input:checked + span{color:var(--terracotta-dark);}
-
-  .pkg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;}
-  .pkg{
-    border:2px solid var(--line);border-radius:8px;padding:16px;cursor:pointer;background:#fffefb;
-  }
-  .pkg.selected{border-color:var(--terracotta);background:#fff6f0;}
-  .pkg .pkg-name{font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;}
-  .pkg .pkg-price{font-family:'Chewy',cursive;font-size:26px;margin:4px 0;}
-  .pkg .pkg-spec{font-size:13px;color:var(--ink-soft);}
-
-  .submit-row{text-align:center;margin-top:24px;}
-  .submit-row .btn{width:100%;}
-
-  footer{padding:40px 0;text-align:center;color:var(--ink-soft);font-size:15px;}
-
-  @media (max-width: 860px){
-    header.hero h1{font-size:42px;}
-    .steps{grid-template-columns:1fr 1fr;}
-    .badges{grid-template-columns:1fr 1fr;}
-    #order .order-shell{grid-template-columns:1fr;}
-    .preview-card{position:static;}
-    .pkg-row{grid-template-columns:1fr;}
-  }
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    *{transition:none !important;}
-  }
+  footer{text-align:center;margin-top:56px;font-size:12.5px;color:var(--ink-soft)}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
 </style>
 </head>
 <body>
+<div class="washes" aria-hidden="true"><span class="w1"></span><span class="w2"></span><span class="w3"></span><span class="w4"></span></div>
+<main>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="eyebrow">Sun Valley Pet &middot; Personalized Memorial Books</div>
-    <div class="bridge-arc" aria-hidden="true">
-      <svg viewBox="0 0 640 110" preserveAspectRatio="none">
-        <path d="M20 100 Q 320 -30 620 100" fill="none" stroke="url(#g1)" stroke-width="7" stroke-linecap="round" opacity="0.55"/>
-        <defs>
-          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#C96A47"/>
-            <stop offset="35%" stop-color="#D9A441"/>
-            <stop offset="65%" stop-color="#7C9473"/>
-            <stop offset="100%" stop-color="#8E7CA6"/>
-          </linearGradient>
-        </defs>
-      </svg>
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="brand">Sun Valley Pet · Personalized Memorial Books</div>
+    <h1>A Life Well-Loved <span class="name-slot" id="heroName">of Your Dog</span></h1>
+    <p class="promise">One photo becomes a <span class="num">32</span>-page keepsake — a watercolor journey through your dog's whole life, from puppy days to the Rainbow Bridge. See the personalized cover before you commit to the rest.</p>
+    <div class="hero-cover"><img src="assets/memorial-sample-cover.jpg" alt="Sample memorial book cover illustration of a dog in a flower wreath, titled A Life Well-Loved, Randy"></div>
+    <div class="hero-cta"><a href="#order"><span class="cta-main">Create Their Tribute Book</span><span class="cta-sub">Personalize with your dog's name &amp; photos</span></a></div>
+    <p class="hero-note">Takes about 2 minutes · you approve the cover before it prints</p>
+  </header>
+
+  <!-- ============ SAMPLE FLIP-THROUGH ============ -->
+  <section class="block">
+    <div class="kicker">A Real Book We Made</div>
+    <h2>Flip Through Randy's Story</h2>
+    <p class="sub">Every book follows one dog's whole life — playful puppy days, favorite adventures, quiet years, and a peaceful goodbye at the Rainbow Bridge. These are real pages from a printed copy.</p>
+    <div class="flip">
+      <figure><img src="assets/memorial-sample-cover.jpg" alt="Cover: A Life Well-Loved, Randy"><figcaption>Front Cover</figcaption></figure>
+      <figure><img src="assets/memorial-02-comehome.jpg" alt="Hands cupping a puppy's face at the front door"><figcaption>Coming Home</figcaption></figure>
+      <figure><img src="assets/memorial-03-puppydays.jpg" alt="Puppy exploring a leafy garden path"><figcaption>A Whole New World</figcaption></figure>
+      <figure><img src="assets/memorial-04-bestfriend.jpg" alt="Dog carrying a favorite duck toy"><figcaption>The Favorite Toy</figcaption></figure>
+      <figure><img src="assets/memorial-05-wildflowers.jpg" alt="Dog running through a field of wildflowers"><figcaption>Ears Flying, Feet Flying</figcaption></figure>
+      <figure><img src="assets/memorial-10-quietafternoon.jpg" alt="Dog resting on a quilt in a sunbeam"><figcaption>The Favorite Spot</figcaption></figure>
+      <figure><img src="assets/memorial-06-waterplay.jpg" alt="Dog splashing through a pond"><figcaption>Splashing, Soaked, Thrilled</figcaption></figure>
+      <figure><img src="assets/memorial-12-sunlitsleep.jpg" alt="Dog asleep in a warm sunbeam on the floor"><figcaption>A Warm Sunbeam</figcaption></figure>
+      <figure><img src="assets/memorial-14-lastgoodbye.jpg" alt="Dog greeted at the door by a loving hand"><figcaption>The Front Door Opening</figcaption></figure>
+      <figure><img src="assets/memorial-08-couch.jpg" alt="Dog resting on the couch with a hand petting it"><figcaption>Steady and Warm</figcaption></figure>
+      <figure><img src="assets/memorial-11-fireside.jpg" alt="Older dog sleeping by the fireplace"><figcaption>A Little Slower</figcaption></figure>
+      <figure><img src="assets/memorial-07-eveningwalk.jpg" alt="Dog walking a golden path at sunset"><figcaption>One More Golden Evening</figcaption></figure>
+      <figure><img src="assets/memorial-09-undertree.jpg" alt="Dog resting peacefully under a tree"><figcaption>Gently, Randy Found Rest</figcaption></figure>
+      <figure><img src="assets/memorial-16-rainbowbridge.jpg" alt="Dog running joyfully beneath a rainbow"><figcaption>Beneath a Gentle Rainbow</figcaption></figure>
+      <figure><img src="assets/memorial-15-leash.jpg" alt="An empty leash and collar hanging by the door"><figcaption>The Leash Still Hangs</figcaption></figure>
+      <figure><img src="assets/memorial-13-heartlight.jpg" alt="Dog resting in a heart-shaped patch of sunlight"><figcaption>This Much Love</figcaption></figure>
     </div>
-    <h1>A Life Well-Loved</h1>
-    <p class="sub">One photo becomes a 32-page keepsake &mdash; a watercolor journey through your dog's whole life, painted just for them, from puppy days to the Rainbow Bridge. See the cover before you commit to the rest.</p>
+    <p class="flip-hint">← scroll to see more →</p>
+    <p class="sample-credit">Sample book stars Randy. Yours will star your dog, painted in this same style.</p>
+  </section>
 
-    <div class="hero-frame">
-      <div class="placeholder-art" data-fallback-for="assets/memorial-sample-cover.jpg">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-4.35-9.5-8.5C.7 8.9 2.4 5 6 5c2 0 3.3 1.1 4 2 .7-.9 2-2 4-2 3.6 0 5.3 3.9 3.5 7.5C19 16.65 12 21 12 21z"/></svg>
-        <span>Randy's cover goes here &middot; assets/memorial-sample-cover.jpg</span>
-      </div>
-      <img src="assets/memorial-sample-cover.jpg" alt="A Life Well-Loved: Randy's Story - sample watercolor memorial book cover" style="display:none" onload="this.style.display='block';this.previousElementSibling.style.display='none';">
-    </div>
-
-    <a href="#order" class="btn">Create Their Tribute Book<small>Personalize with your dog's name & photos</small></a>
-    <p class="microcopy">Takes about 2 minutes &middot; you approve the cover before it prints</p>
-  </div>
-</header>
-
-<section class="alt">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">A Real Book We Made</div>
-      <h2>Flip Through Randy's Story</h2>
-      <p>Every book follows one dog's whole life &mdash; playful puppy days, favorite adventures, quiet years, and a peaceful goodbye at the Rainbow Bridge. These are real pages from a printed copy.</p>
-    </div>
-
-    <div class="gallery-scroll" id="gallery"></div>
-    <p class="scroll-hint">&larr; scroll to see more &rarr;</p>
-    <p class="microcopy" style="text-align:center;">Sample book stars Randy. Yours will star your dog, painted in this same style.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Simple &amp; Gentle</div>
-      <h2>How It Works</h2>
-    </div>
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="block">
+    <div class="kicker">Simple &amp; Gentle</div>
+    <h2>How It Works</h2>
     <div class="steps">
-      <div class="step"><div class="stepnum">1</div><div class="icon">📸</div><h3>Upload</h3><p>Send one or two clear photos of your dog</p></div>
-      <div class="step"><div class="stepnum">2</div><div class="icon">🎨</div><h3>We Paint</h3><p>Their whole life becomes a watercolor story</p></div>
-      <div class="step"><div class="stepnum">3</div><div class="icon">👀</div><h3>You Approve</h3><p>See the cover before the rest is made</p></div>
-      <div class="step"><div class="stepnum">4</div><div class="icon">📦</div><h3>We Print &amp; Ship</h3><p>A real keepsake book, mailed to you</p></div>
+      <div class="step-card"><div class="num">1</div><div class="emoji">📸</div><h4>Upload</h4><p>Send one or two clear photos of your dog</p></div>
+      <div class="step-card"><div class="num">2</div><div class="emoji">🎨</div><h4>We Paint</h4><p>Their whole life becomes a watercolor story</p></div>
+      <div class="step-card"><div class="num">3</div><div class="emoji">👀</div><h4>You Approve</h4><p>See the cover before the rest is made</p></div>
+      <div class="step-card"><div class="num">4</div><div class="emoji">📦</div><h4>We Print &amp; Ship</h4><p>A real keepsake book, mailed to you</p></div>
     </div>
+  </section>
 
+  <!-- ============ TRUST BADGES ============ -->
+  <section class="block">
     <div class="badges">
-      <div class="badge"><div class="icon">🔒</div><h4>Photo Kept Private</h4><p>Never shared or sold</p></div>
-      <div class="badge"><div class="icon">✅</div><h4>You Approve First</h4><p>See the cover before we print</p></div>
-      <div class="badge"><div class="icon">🖨️</div><h4>Real Printed Book</h4><p>Not a PDF &mdash; shipped to your door</p></div>
-      <div class="badge"><div class="icon">🌈</div><h4>A Lasting Tribute</h4><p>A gentle way to remember them</p></div>
+      <div class="badge"><div class="emoji">🔒</div><h5>Photo Kept Private</h5><p>Never shared or sold</p></div>
+      <div class="badge"><div class="emoji">✅</div><h5>You Approve First</h5><p>See the cover before we print</p></div>
+      <div class="badge"><div class="emoji">🖨️</div><h5>Real Printed Book</h5><p>Not a PDF — shipped to your door</p></div>
+      <div class="badge"><div class="emoji">🌈</div><h5>A Lasting Tribute</h5><p>A gentle way to remember them</p></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="alt" id="order">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Their Turn</div>
-      <h2>Create Their Tribute Book</h2>
-    </div>
-
-    <div class="order-shell">
-      <div class="preview-card">
-        <div class="frame">
-          <div class="placeholder-art" id="previewPlaceholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-4.35-9.5-8.5C.7 8.9 2.4 5 6 5c2 0 3.3 1.1 4 2 .7-.9 2-2 4-2 3.6 0 5.3 3.9 3.5 7.5C19 16.65 12 21 12 21z"/></svg>
-            <span>Your dog's photo appears here</span>
-          </div>
-          <img id="previewImg" style="display:none;width:100%;">
+  <!-- ============ ORDER FORM ============ -->
+  <section class="block order-anchor" id="order">
+    <div class="kicker">Their Turn</div>
+    <h2>Create Their Tribute Book</h2>
+    <div class="layout">
+      <div class="preview-wrap">
+        <div class="cover" aria-hidden="true">
+          <h2>A Life Well-Loved <b id="coverName">of Your Dog</b></h2>
+          <div class="photo-ring" id="photoRing"><span class="hint">Your dog's photo appears here</span></div>
+          <div class="fancy-line" id="fancyLine"></div>
         </div>
-        <div class="preview-title">A Life Well-Loved<br><span id="previewName">of Your Dog</span></div>
-        <p class="preview-note">Live preview &mdash; the printed cover is a full watercolor portrait painted from your photo.</p>
+        <p class="preview-caption">Live preview — the printed cover is a full watercolor portrait painted from your photo.</p>
       </div>
 
-      <form class="book-form" id="bookForm">
-        <div class="step-block">
-          <div class="step-label">Step 1 of 3</div>
+      <form id="orderForm" novalidate>
+        <section class="step">
+          <div class="step-tag">Step 1 of 3</div>
           <h3>Upload your dog's photo</h3>
-          <label class="upload-box" id="uploadBox1">
-            <input type="file" accept="image/*" id="photo1">
-            <div class="u-title">Tap to choose a photo</div>
-            <div class="u-sub">JPG, PNG, or HEIC &middot; up to 15 MB</div>
-          </label>
-          <p class="field-help"><strong>Best photos:</strong> good light, face clearly visible, front or 3/4 view, one dog only. This is what our illustrator works from &mdash; the clearer the photo, the better the likeness.</p>
+          <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload your dog's photo">
+            <strong id="dropTitle">Tap to choose a photo</strong>
+            <span id="dropSub">JPG, PNG, or HEIC · up to 15 MB</span>
+          </div>
+          <input type="file" id="photo" accept="image/jpeg,image/png,image/heic,image/heif" hidden>
+          <p class="photo-tips"><b>Best photos:</b> good light, face clearly visible, front or 3/4 view, one dog only. This photo is what our illustrator works from — the clearer the photo, the better the likeness.<span class="extra-tip"><b>Tip:</b> photos where your dog isn't too close-up tend to work best.</span></p>
 
           <details class="second-photo">
             <summary>+ Add a second photo (optional)</summary>
-            <p class="field-help">If your dog changed a lot over the years, add a younger photo too &mdash; we'll paint their whole journey, from puppy to golden years.</p>
-            <label class="upload-box" id="uploadBox2" style="margin-top:10px;">
-              <input type="file" accept="image/*" id="photo2">
-              <div class="u-title">Tap to choose a second photo</div>
-              <div class="u-sub">Optional &middot; a younger photo works best</div>
-            </label>
-            <div id="photo2Preview" class="second-photo-preview"></div>
+            <p class="help">If your dog changed a lot over the years, add a younger photo too — we'll paint their whole journey, from puppy to golden years.</p>
+            <div class="drop" id="drop2" tabindex="0" role="button" aria-label="Upload a second photo">
+              <strong id="drop2Title">Tap to choose a second photo</strong>
+              <span id="drop2Sub">Optional · a younger photo works best</span>
+            </div>
+            <input type="file" id="photo2" accept="image/jpeg,image/png,image/heic,image/heif" hidden>
+            <div class="second-photo-preview" id="photo2Preview"></div>
           </details>
-        </div>
+        </section>
 
-        <div class="step-block">
-          <div class="step-label">Step 2 of 3</div>
+        <section class="step">
+          <div class="step-tag">Step 2 of 3</div>
           <h3>Tell us about them</h3>
-
-          <label class="f">Your dog's name <span class="charcount"><span id="nameCount">0</span> / 12</span></label>
-          <input type="text" id="dogName" maxlength="12" placeholder="e.g. Randy">
-          <p class="field-help">This is the name used in the title and throughout the story.</p>
-
-          <label class="f">Fancy full name (optional) <span class="charcount"><span id="fancyCount">0</span> / 40</span></label>
-          <input type="text" id="fancyName" maxlength="40" placeholder="e.g. Randall the Brave">
-          <p class="field-help">Appears once on the title page: "in memory of &hellip;" &mdash; a favorite touch in gift copies.</p>
-
-          <label class="f">Years together (optional)</label>
-          <input type="text" id="yearsTogether" maxlength="20" placeholder="e.g. 2012&ndash;2024, or 11 wonderful years">
-
-          <label class="f">The story says&hellip;</label>
-          <div class="radio-row">
-            <label><input type="radio" name="pronoun" value="he" checked><span>he / his</span></label>
-            <label><input type="radio" name="pronoun" value="she"><span>she / her</span></label>
+          <div class="field">
+            <label for="callName">Your dog's name <span class="count" id="nameCount">0 / 12</span></label>
+            <input type="text" id="callName" maxlength="12" autocomplete="off" placeholder="Randy">
+            <p class="help">This is the name in the title and throughout the story.</p>
           </div>
-        </div>
+          <div class="field">
+            <label for="fancyName">Fancy full name <span style="font-weight:400">(optional)</span> <span class="count" id="fancyCount">0 / 40</span></label>
+            <input type="text" id="fancyName" maxlength="40" autocomplete="off" placeholder="Randall the Brave">
+            <p class="help">Appears once on the title page: "in memory of …" — a favorite touch in gift copies.</p>
+          </div>
+          <div class="field">
+            <label for="yearsTogether">Years together <span style="font-weight:400">(optional)</span></label>
+            <input type="text" id="yearsTogether" maxlength="20" autocomplete="off" placeholder="2014–2026">
+          </div>
+          <div class="field">
+            <label>The story says…</label>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="pronoun" value="he" checked><div>he / his</div></label>
+              <label class="choice"><input type="radio" name="pronoun" value="she"><div>she / her</div></label>
+            </div>
+          </div>
+        </section>
 
-        <div class="step-block">
-          <div class="step-label">Step 3 of 3</div>
+        <section class="step">
+          <div class="step-tag">Step 3 of 3</div>
           <h3>Choose your book</h3>
-          <div class="pkg-row" id="pkgRow">
-            <div class="pkg selected" data-price="29.95" data-name="Softcover">
-              <div class="pkg-name">Softcover</div>
-              <div class="pkg-price">$29.95</div>
-              <div class="pkg-spec">8&Prime; &times; 8&Prime; &middot; 32 pages &middot; Soft Cover</div>
-            </div>
-            <div class="pkg" data-price="44.95" data-name="Hardcover">
-              <div class="pkg-name">Hardcover</div>
-              <div class="pkg-price">$44.95</div>
-              <div class="pkg-spec">8&Prime; &times; 8&Prime; &middot; 32 pages &middot; Hardcover</div>
-            </div>
+          <div class="choices">
+            <label class="choice tier"><input type="radio" name="format" value="softcover" checked>
+              <div><div class="t-name">Softcover</div><div class="t-price">$29.95</div>
+              <div class="t-desc">8″ × 8″ · 32 pages<b>Soft Cover</b></div></div>
+            </label>
+            <label class="choice tier"><input type="radio" name="format" value="hardcover">
+              <div><div class="t-name">Hardcover</div><div class="t-price">$44.95</div>
+              <div class="t-desc">8″ × 8″ · 32 pages<b>Hardcover</b></div></div>
+            </label>
           </div>
-        </div>
+        </section>
 
-        <div class="submit-row">
-          <button type="submit" class="btn">Create Their Book</button>
-          <p class="microcopy">Secure checkout by Stripe &middot; shipping address collected at checkout.<br>You'll see the cover before the rest of the book is made.</p>
+        <div>
+          <button type="submit" class="cta" id="checkoutBtn">Create Their Book</button>
+          <div class="error" id="formError" role="alert"></div>
+          <p class="cta-note">Secure checkout by Stripe · shipping address collected at checkout.<br>
+          You'll see the cover before the rest of the book is made.</p>
         </div>
       </form>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  Made with love by Sun Valley Pet &middot; <a href="https://sunvalleypet.com">sunvalleypet.com</a>
-</footer>
+  <footer>Made with love by Sun Valley Pet · <a href="https://sunvalleypet.com" style="color:var(--blue-deep)">sunvalleypet.com</a></footer>
+</main>
 
 <script>
-/* ---------------------------------------------------------------
-   Gallery content — life-journey arc, ending at the Rainbow Bridge.
-   Drop matching image files into /assets with these exact names
-   and they'll appear automatically; until then, a soft placeholder
-   frame with the caption is shown instead of a broken image.
----------------------------------------------------------------- */
-const GALLERY = [
-  { file: "memorial-sample-cover.jpg", caption: "Front Cover" },
-  { file: "memorial-01-pawprint.jpg", caption: "Title Page" },
-  { file: "memorial-02-comehome.jpg", caption: "Coming Home" },
-  { file: "memorial-03-puppydays.jpg", caption: "Puppy Days" },
-  { file: "memorial-04-bestfriend.jpg", caption: "That First Favorite Toy" },
-  { file: "memorial-05-wildflowers.jpg", caption: "Ears Flying, Feet Flying" },
-  { file: "memorial-10-quietafternoon.jpg", caption: "A Favorite Spot in the Sun" },
-  { file: "memorial-06-waterplay.jpg", caption: "Splashing, Soaked, Thrilled" },
-  { file: "memorial-12-sunlitsleep.jpg", caption: "A Warm Sunbeam" },
-  { file: "memorial-14-lastgoodbye.jpg", caption: "The Front Door Opening" },
-  { file: "memorial-08-couch.jpg", caption: "Evenings Together" },
-  { file: "memorial-11-fireside.jpg", caption: "A Little Slower, Just as Loved" },
-  { file: "memorial-07-eveningwalk.jpg", caption: "One More Golden Evening" },
-  { file: "memorial-09-undertree.jpg", caption: "Gently, Randy Found Rest" },
-  { file: "memorial-16-rainbowbridge.jpg", caption: "Beneath a Gentle Rainbow" },
-  { file: "memorial-15-leash.jpg", caption: "The Leash Still Hangs" },
-  { file: "memorial-13-heartlight.jpg", caption: "This Much Love, Still Living" }
-];
+(function(){
+  var photoInput = document.getElementById('photo');
+  var drop = document.getElementById('drop');
+  var ring = document.getElementById('photoRing');
+  var callName = document.getElementById('callName');
+  var fancyName = document.getElementById('fancyName');
+  var coverName = document.getElementById('coverName');
+  var heroName = document.getElementById('heroName');
+  var fancyLine = document.getElementById('fancyLine');
+  var errBox = document.getElementById('formError');
+  var btn = document.getElementById('checkoutBtn');
+  var photoFile = null;
 
-const galleryEl = document.getElementById('gallery');
-GALLERY.forEach(item => {
-  const fig = document.createElement('figure');
-  fig.innerHTML = `
-    <div class="frame">
-      <div class="placeholder-art" style="width:100%;height:100%;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:34px;height:34px;"><path d="M12 21s-7-4.35-9.5-8.5C.7 8.9 2.4 5 6 5c2 0 3.3 1.1 4 2 .7-.9 2-2 4-2 3.6 0 5.3 3.9 3.5 7.5C19 16.65 12 21 12 21z"/></svg>
-        <span>assets/${item.file}</span>
-      </div>
-      <img src="assets/${item.file}" alt="${item.caption}" loading="lazy"
-           style="display:none;width:100%;height:100%;object-fit:cover;"
-           onload="this.style.display='block';this.previousElementSibling.style.display='none';">
-    </div>
-    <figcaption><em>${item.caption}</em></figcaption>`;
-  galleryEl.appendChild(fig);
-});
+  var photo2Input = document.getElementById('photo2');
+  var drop2 = document.getElementById('drop2');
+  var photo2Preview = document.getElementById('photo2Preview');
+  var photoFile2 = null;
 
-/* ---------------------------------------------------------------
-   Live cover preview
----------------------------------------------------------------- */
-const nameInput = document.getElementById('dogName');
-const previewName = document.getElementById('previewName');
-const nameCount = document.getElementById('nameCount');
-nameInput.addEventListener('input', () => {
-  previewName.textContent = nameInput.value.trim() ? `for ${nameInput.value.trim()}` : 'of Your Dog';
-  nameCount.textContent = nameInput.value.length;
-});
-document.getElementById('fancyName').addEventListener('input', e => {
-  document.getElementById('fancyCount').textContent = e.target.value.length;
-});
-
-function wireUpload(boxId, inputId, onLoad){
-  const box = document.getElementById(boxId);
-  const input = document.getElementById(inputId);
-  input.addEventListener('change', () => {
-    if (!input.files || !input.files[0]) return;
-    box.classList.add('filled');
-    box.querySelector('.u-title').textContent = input.files[0].name;
-    box.querySelector('.u-sub').textContent = 'Tap to change photo';
-    if (onLoad){
-      const reader = new FileReader();
-      reader.onload = e => onLoad(e.target.result);
-      reader.readAsDataURL(input.files[0]);
-    }
+  drop.addEventListener('click', function(){ photoInput.click(); });
+  drop.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();photoInput.click();} });
+  photoInput.addEventListener('change', function(){
+    var f = photoInput.files[0];
+    if(!f) return;
+    if(f.size > 15*1024*1024){ showErr('That photo is over 15 MB. Please choose a smaller one.'); return; }
+    photoFile = f;
+    drop.classList.add('has-file');
+    document.getElementById('dropTitle').textContent = f.name;
+    document.getElementById('dropSub').textContent = 'Tap to choose a different photo';
+    hideErr();
+    var url = URL.createObjectURL(f);
+    var img = new Image();
+    img.onload = function(){ ring.innerHTML=''; ring.appendChild(img); ring.classList.add('filled'); };
+    img.onerror = function(){ ring.innerHTML='<span class="hint">Photo received! (Preview unavailable for this format — it will print fine.)</span>'; ring.classList.add('filled'); };
+    img.src = url; img.alt='';
   });
-}
-wireUpload('uploadBox1','photo1', (src) => {
-  const img = document.getElementById('previewImg');
-  const ph = document.getElementById('previewPlaceholder');
-  img.src = src; img.style.display='block'; ph.style.display='none';
-});
-wireUpload('uploadBox2','photo2', (src) => {
-  const wrap = document.getElementById('photo2Preview');
-  wrap.classList.add('filled');
-  wrap.innerHTML = `<img src="${src}" alt="Second photo preview"><span>Younger photo added</span>`;
-});
 
-/* ---------------------------------------------------------------
-   Package selection
----------------------------------------------------------------- */
-document.querySelectorAll('.pkg').forEach(pkg => {
-  pkg.addEventListener('click', () => {
-    document.querySelectorAll('.pkg').forEach(p => p.classList.remove('selected'));
-    pkg.classList.add('selected');
+  drop2.addEventListener('click', function(){ photo2Input.click(); });
+  drop2.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();photo2Input.click();} });
+  photo2Input.addEventListener('change', function(){
+    var f = photo2Input.files[0];
+    if(!f) return;
+    if(f.size > 15*1024*1024){ showErr('That second photo is over 15 MB. Please choose a smaller one.'); return; }
+    photoFile2 = f;
+    drop2.classList.add('has-file');
+    document.getElementById('drop2Title').textContent = f.name;
+    document.getElementById('drop2Sub').textContent = 'Tap to choose a different photo';
+    hideErr();
+    var url = URL.createObjectURL(f);
+    var img = new Image();
+    img.onload = function(){
+      photo2Preview.innerHTML = '';
+      img.alt = '';
+      photo2Preview.appendChild(img);
+      var label = document.createElement('span');
+      label.textContent = 'Younger photo added';
+      photo2Preview.appendChild(label);
+      photo2Preview.classList.add('filled');
+    };
+    img.src = url;
   });
-});
 
-/* ---------------------------------------------------------------
-   Checkout hand-off.
-   This mirrors the existing "A Day in the Life" pipeline
-   (dogillustrationbooks.netlify.app / svp-daybook-order repo):
-   form submit -> create-checkout-session function -> Stripe Checkout
-   -> stripe-webhook-background.js -> cover generated -> approve.html
-   email -> remaining illustrations + PDF assembly -> Gelato order.
-   Wire the fetch call below to that same backend once this page is
-   deployed alongside (or pointed at) that pipeline.
----------------------------------------------------------------- */
-document.getElementById('bookForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const selectedPkg = document.querySelector('.pkg.selected');
-  const payload = {
-    product: 'memorial-book',
-    dogName: nameInput.value.trim(),
-    fancyName: document.getElementById('fancyName').value.trim(),
-    yearsTogether: document.getElementById('yearsTogether').value.trim(),
-    pronoun: document.querySelector('input[name=pronoun]:checked').value,
-    package: selectedPkg.dataset.name,
-    price: selectedPkg.dataset.price
-    // photo1 / photo2 files are read from #photo1 / #photo2 inputs
-  };
-  console.log('Ready for checkout:', payload);
-  alert('This demo page is ready to wire up to Stripe Checkout — see the comment above this script block for the integration point.');
-});
+  function counter(input, el, max){ el.textContent = input.value.length + ' / ' + max; }
+  callName.addEventListener('input', function(){
+    counter(callName, document.getElementById('nameCount'), 12);
+    var v = callName.value.trim();
+    var label = v ? 'of ' + v : 'of Your Dog';
+    coverName.textContent = label;
+    heroName.textContent = label;
+    coverName.classList.toggle('long', v.length > 8);
+  });
+  fancyName.addEventListener('input', function(){
+    counter(fancyName, document.getElementById('fancyCount'), 40);
+    fancyLine.textContent = fancyName.value.trim() ? 'in memory of ' + fancyName.value.trim() : '';
+  });
+
+  function showErr(msg){ errBox.textContent = msg; errBox.classList.add('show'); }
+  function hideErr(){ errBox.classList.remove('show'); }
+
+  var MIN_SHORT_SIDE = 400;
+  var MAX_ASPECT = 2.2;
+  var TARGET_BYTES = 3 * 1024 * 1024;
+
+  function dataUrlBytes(dataUrl){
+    var b64 = dataUrl.slice(dataUrl.indexOf(',') + 1);
+    return Math.round(b64.length * 0.75);
+  }
+
+  function validateAndNormalizePhoto(file){
+    return new Promise(function(resolve, reject){
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function(){
+        URL.revokeObjectURL(url);
+        var w = img.width, h = img.height;
+        var shortSide = Math.min(w, h);
+        var longSide = Math.max(w, h);
+        var ratio = longSide / shortSide;
+
+        if (shortSide < MIN_SHORT_SIDE) { return reject(new Error('low-res')); }
+        if (ratio > MAX_ASPECT) { return reject(new Error('extreme-aspect')); }
+
+        function tryCompress(maxDim, quality){
+          var s = Math.min(1, maxDim / longSide);
+          var cv = document.createElement('canvas');
+          cv.width = Math.round(w * s);
+          cv.height = Math.round(h * s);
+          cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+          return cv.toDataURL('image/jpeg', quality);
+        }
+
+        var attempts = [
+          { dim: 1600, q: 0.87 },
+          { dim: 1600, q: 0.70 },
+          { dim: 1200, q: 0.70 },
+          { dim: 1000, q: 0.65 },
+          { dim: 800,  q: 0.60 }
+        ];
+        var result = null;
+        for (var i = 0; i < attempts.length; i++){
+          var candidate = tryCompress(attempts[i].dim, attempts[i].q);
+          result = candidate;
+          if (dataUrlBytes(candidate) <= TARGET_BYTES) { break; }
+        }
+        resolve(result);
+      };
+      img.onerror = function(){
+        URL.revokeObjectURL(url);
+        if(file.size < TARGET_BYTES){
+          var rd = new FileReader();
+          rd.onload = function(){ resolve(rd.result); };
+          rd.onerror = function(){ reject(new Error('read')); };
+          rd.readAsDataURL(file);
+        } else {
+          reject(new Error('format'));
+        }
+      };
+      img.src = url;
+    });
+  }
+
+  document.getElementById('orderForm').addEventListener('submit', function(e){
+    e.preventDefault(); hideErr();
+    var name = callName.value.trim();
+    if(!photoFile){ showErr('Please add a photo of your dog — it is what we paint from!'); return; }
+    if(name.length < 2){ showErr("Please enter your dog's name (2–12 characters)."); return; }
+    if(!/^[A-Za-z][A-Za-z '\-]{1,11}$/.test(name)){ showErr("Names can use letters, spaces, hyphens, and apostrophes."); return; }
+
+    btn.disabled = true; btn.textContent = 'Getting your book ready…';
+
+    var lastDataUrlSize = 0;
+    validateAndNormalizePhoto(photoFile)
+      .then(function(dataUrl){
+        lastDataUrlSize = dataUrl.length;
+        return fetch('/.netlify/functions/upload-photo', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ filename: photoFile.name, data: dataUrl })
+        });
+      })
+      .then(function(r){
+        if(!r.ok) return r.json().catch(function(){return {};}).then(function(j){
+          var sizeInfo = ' [sent ' + Math.round(lastDataUrlSize/1024) + 'KB, original file ' + Math.round(photoFile.size/1024) + 'KB, type ' + (photoFile.type || 'unknown') + ']';
+          throw new Error('photo upload: ' + (j.error || ('code ' + r.status)) + sizeInfo);
+        });
+        return r.json();
+      })
+      .then(function(up){
+        return fetch('/.netlify/functions/create-checkout', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({
+            photoId: up.photoId,
+            callName: name,
+            fancyName: fancyName.value.trim(),
+            yearsTogether: document.getElementById('yearsTogether').value.trim(),
+            pronoun: document.querySelector('input[name=pronoun]:checked').value,
+            format: document.querySelector('input[name=format]:checked').value
+          })
+        });
+      })
+      .then(function(r){
+        if(!r.ok) return r.json().catch(function(){return {};}).then(function(j){
+          throw new Error('checkout: ' + (j.error || ('code ' + r.status)));
+        });
+        return r.json();
+      })
+      .then(function(s){ window.location = s.url; })
+      .catch(function(err){
+        btn.disabled = false; btn.textContent = 'Create Their Book';
+        if(err && err.message === 'format'){
+          showErr('We could not read that photo format on this browser. Please use a JPG or PNG version of the photo.');
+        } else if(err && err.message === 'low-res'){
+          showErr('That photo is a bit too small for a good likeness — please choose a higher-resolution photo of your dog.');
+        } else if(err && err.message === 'extreme-aspect'){
+          showErr('That photo\'s shape is unusually long or thin. Please choose a more standard photo where your dog fills more of the frame.');
+        } else {
+          showErr('Something went wrong on our end — nothing was charged. (Detail: ' + (err && err.message ? err.message : 'unknown') + ') Please send Marc a screenshot of this message.');
+        }
+      });
+  });
+})();
 </script>
-
 </body>
 </html>
