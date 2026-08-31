@@ -105,7 +105,7 @@
     align-items:center;
     justify-content:center;
   }
-  .leaf .side img{
+  .leaf .side > img{
     width:100%;height:100%;
     object-fit:cover;
     display:block;
@@ -116,32 +116,90 @@
      left half's flex width:100% doesn't get shrunk to 50/50 by its sibling */
   .leaf.is-cover .side{ display:none; }
   .leaf.is-cover .side:first-child{ display:flex; width:100%; }
-  .leaf.is-cover .side img{ object-fit:contain; background:var(--cream); }
+  .leaf.is-cover .side > img{ object-fit:contain; background:var(--cream); }
 
   .page-story{
     font-family:'Comfortaa', sans-serif;
     font-weight:500;
-    font-size:clamp(10px,1.45vw,14px);
-    line-height:1.75;
-    letter-spacing:0.2px;
     color:var(--brown);
     text-align:center;
-    padding:0 15%;
+    padding:13% 13% 0;
     position:relative;
     width:100%;height:100%;
     display:flex;
-    align-items:flex-start;
-    justify-content:center;
-    padding-top:22%;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
     background:
       radial-gradient(ellipse 55% 40% at 18% 18%, rgba(120,105,80,0.07), transparent 60%),
       radial-gradient(ellipse 60% 45% at 85% 82%, rgba(120,105,80,0.06), transparent 60%),
       var(--cream);
   }
-  .page-story .pgnum{
-    position:absolute;left:14px;bottom:12px;
+  .page-story-text{
+    font-size:clamp(10px,1.45vw,14px);
+    line-height:1.75;
+    letter-spacing:0.2px;
+  }
+  .title-block{ margin-bottom:16px; }
+  .title-block-heading{
+    font-family:'Chewy', cursive;
+    font-size:clamp(16px,2.6vw,22px);
+    color:var(--brown);
+    margin-bottom:2px;
+  }
+  .title-block-sub{
     font-family:'Comfortaa', sans-serif;
-    font-size:10px;color:#5b7d82;opacity:.75;
+    font-size:clamp(9px,1.3vw,12px);
+    color:var(--brown-soft);
+    margin-bottom:10px;
+  }
+  .title-block-paw{
+    width:14%;
+    max-width:46px;
+    display:block;
+    margin:0 auto;
+    opacity:0.9;
+  }
+  .pgnum-img{
+    position:absolute;left:12px;bottom:10px;
+    font-family:'Comfortaa', sans-serif;
+    font-size:11px;
+    color:#fdf9ef;
+    background:rgba(60,45,30,0.45);
+    padding:2px 8px;
+    border-radius:10px;
+    letter-spacing:0.3px;
+  }
+  .closing-page{
+    width:100%;height:100%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;
+    padding:8%;
+    background:var(--cream);
+  }
+  .closing-heading{
+    font-family:'Chewy', cursive;
+    font-size:clamp(20px,3.4vw,30px);
+    color:var(--brown);
+  }
+  .closing-belongs{
+    font-family:'Comfortaa', sans-serif;
+    font-size:clamp(11px,1.6vw,15px);
+    color:var(--brown-soft);
+    margin-top:14px;
+  }
+  .closing-line{
+    width:60%;
+    border-bottom:1.5px solid var(--brown-soft);
+    opacity:.5;
+    margin:8px 0 14px;
+  }
+  .closing-footer{
+    font-family:'Comfortaa', sans-serif;
+    font-size:clamp(9px,1.2vw,11px);
+    color:var(--brown-soft);
+    opacity:.8;
+    line-height:1.6;
   }
 
   .gutter{
@@ -314,31 +372,71 @@
 
 <script>
 var COVER_SRC = "assets/memorial-sample-cover.jpg";
+var TITLEPAGE_SRC = "assets/memorial-01-pawprint.jpg";
 
 var SCENES = [
-  { img: "assets/memorial-01-pawprint.jpg", text: "Every story starts with tiny paws and a heart already full of love." },
-  { img: "assets/memorial-02-comehome.jpg", text: "The day you came home, our whole world got warmer." },
-  { img: "assets/memorial-03-puppydays.jpg", text: "You explored every leaf, every puddle, every corner of the yard." },
-  { img: "assets/memorial-04-bestfriend.jpg", text: "You carried your favorite things everywhere — especially the ones that squeaked." },
-  { img: "assets/memorial-05-wildflowers.jpg", text: "Summers were made for running through the wildflowers together." },
-  { img: "assets/memorial-06-waterplay.jpg", text: "You never once said no to a splash." },
-  { img: "assets/memorial-07-eveningwalk.jpg", text: "Evening walks were our favorite kind of quiet." },
-  { img: "assets/memorial-08-couch.jpg", text: "Some nights, all you needed was a hand resting on your back." },
-  { img: "assets/memorial-09-undertree.jpg", text: "As the years went by, you found the softest patches of shade." },
-  { img: "assets/memorial-10-quietafternoon.jpg", text: "Afternoons grew slower, and sweeter, and softer." },
-  { img: "assets/memorial-11-fireside.jpg", text: "You always knew exactly where the warmest spot in the house was." },
-  { img: "assets/memorial-12-sunlitsleep.jpg", text: "You slept like the whole world was safe — because with us, it was." },
-  { img: "assets/memorial-13-heartlight.jpg", text: "Even in your quiet last days, you filled every room with love." },
-  { img: "assets/memorial-14-lastgoodbye.jpg", text: "We held you close and told you it was okay to rest." },
-  { img: "assets/memorial-15-leash.jpg", text: "Your leash still hangs by the door. We're not ready to move it yet." },
-  { img: "assets/memorial-16-rainbowbridge.jpg", text: "Run free now, Randy. We'll love you every day until we meet again." },
+  { img: "assets/memorial-02-comehome.jpg", text: "The day Randy came into our lives,
+everything changed.
+We just didn't know yet
+how much.", pageNum: 2 },
+  { img: "assets/memorial-03-puppydays.jpg", text: "Every corner of the yard
+was a whole new world.
+We got to discover it
+together.", pageNum: 4 },
+  { img: "assets/memorial-04-bestfriend.jpg", text: "That first favorite toy.
+Randy carried it everywhere,
+like it was the greatest treasure
+in the world.", pageNum: 6 },
+  { img: "assets/memorial-05-wildflowers.jpg", text: "Ears flying, feet flying,
+Randy ran like the whole field
+belonged to him alone.
+For a while, it did.", pageNum: 8 },
+  { img: "assets/memorial-10-quietafternoon.jpg", text: "There was always a favorite spot —
+the one patch of sun
+that was somehow always Randy's.", pageNum: 10 },
+  { img: "assets/memorial-06-waterplay.jpg", text: "Splashing, soaked, completely thrilled —
+Randy never once
+worried about getting wet.", pageNum: 12 },
+  { img: "assets/memorial-12-sunlitsleep.jpg", text: "A warm sunbeam, a soft sigh,
+and Randy was exactly
+where he wanted to be.", pageNum: 14 },
+  { img: "assets/memorial-14-lastgoodbye.jpg", text: "The best sound in the world?
+The front door opening.
+Randy made sure we knew it, every time.", pageNum: 16 },
+  { img: "assets/memorial-08-couch.jpg", text: "Some evenings didn't need words.
+Just Randy, close by,
+steady and warm.", pageNum: 18 },
+  { img: "assets/memorial-11-fireside.jpg", text: "The years moved gently,
+and so did Randy —
+a little slower, a little grayer,
+just as loved.", pageNum: 20 },
+  { img: "assets/memorial-07-eveningwalk.jpg", text: "One more walk.
+One more golden evening
+with Randy by our side.", pageNum: 22 },
+  { img: "assets/memorial-09-undertree.jpg", text: "And then, gently,
+Randy found rest —
+peaceful, warm, and loved
+to the very last moment.", pageNum: 24 },
+  { img: "assets/memorial-16-rainbowbridge.jpg", text: "Somewhere beyond, Randy runs again —
+young and free,
+beneath a gentle rainbow,
+waiting for us.", pageNum: 26 },
+  { img: "assets/memorial-15-leash.jpg", text: "The leash still hangs by the door.
+We haven't moved it.
+We're not sure we ever will.", pageNum: 28 },
+  { img: "assets/memorial-13-heartlight.jpg", text: "A house is quieter now,
+but never empty —
+not with this much love
+still living in it.", pageNum: 30 },
 ];
 
 (function(){
   // Spread 0 = closed cover (single wide cover image).
-  // Spread k (1..16) = one story scene: left page = story text,
-  // right page = full-bleed illustration.
-  var LAST_SPREAD = SCENES.length; // 16
+  // Spread 1..15 = one story scene each: left page = story text
+  // (spread 1 also carries the title-page treatment), right page =
+  // full-bleed illustration with its printed page number.
+  // Spread 16 = closing page.
+  var LAST_SPREAD = SCENES.length + 1; // 15 story spreads + 1 closing spread
 
   var current = 0;
   var animating = false;
@@ -360,15 +458,34 @@ var SCENES = [
   var zoneLeft = document.getElementById('zoneLeft');
   var zoneRight = document.getElementById('zoneRight');
 
-  function renderTextPage(el, text, pageNum){
-    el.innerHTML = '<div class="page-story">' + text +
-      '<span class="pgnum">' + pageNum + '</span></div>';
+  var TITLE_BLOCK =
+    '<div class="title-block">' +
+      '<div class="title-block-heading">A Life Well-Loved</div>' +
+      '<div class="title-block-sub">Randy &middot; 2014&ndash;2026</div>' +
+      '<img class="title-block-paw" src="' + TITLEPAGE_SRC + '" alt="">' +
+    '</div>';
+
+  function renderTextPage(el, text, titleBlockHtml){
+    el.innerHTML = '<div class="page-story">' +
+      (titleBlockHtml || '') +
+      '<div class="page-story-text">' + text.replace(/\n/g, '<br>') + '</div>' +
+      '</div>';
   }
-  function renderImagePage(el, src){
-    el.innerHTML = '<img src="' + src + '" alt="">';
+  function renderImagePage(el, src, pageNum){
+    el.innerHTML = '<img src="' + src + '" alt="">' +
+      (pageNum ? '<span class="pgnum-img">' + pageNum + '</span>' : '');
   }
   function renderCoverPage(el, src){
     el.innerHTML = '<img src="' + src + '" alt="A Life Well-Loved: Randy\u2019s Story cover">';
+  }
+  function renderClosingPage(el){
+    el.innerHTML =
+      '<div class="closing-page">' +
+        '<div class="closing-heading">Until We Meet Again</div>' +
+        '<div class="closing-belongs">This book belongs to</div>' +
+        '<div class="closing-line"></div>' +
+        '<div class="closing-footer">Randy &middot; 2014&ndash;2026 &middot; Forever loved.<br>Made with love by Sun Valley Pet &middot; sunvalleypet.com</div>' +
+      '</div>';
   }
 
   function fillLeaf(leafEl, leftEl, rightEl, k){
@@ -376,11 +493,16 @@ var SCENES = [
       leafEl.classList.add('is-cover');
       renderCoverPage(leftEl, COVER_SRC);
       rightEl.innerHTML = '';
-    } else {
+    } else if (k <= SCENES.length){
       leafEl.classList.remove('is-cover');
       var sc = SCENES[k - 1];
-      renderTextPage(leftEl, sc.text, 2 * k);
-      renderImagePage(rightEl, sc.img);
+      renderTextPage(leftEl, sc.text, k === 1 ? TITLE_BLOCK : '');
+      renderImagePage(rightEl, sc.img, sc.pageNum);
+    } else {
+      // closing spread
+      leafEl.classList.remove('is-cover');
+      leftEl.innerHTML = '';
+      renderClosingPage(rightEl);
     }
   }
 
