@@ -31,15 +31,12 @@
   .kicker{font:700 12px 'Nunito';letter-spacing:.14em;text-transform:uppercase;color:var(--blue-deep);text-align:center}
   .block h2{font-family:'Chewy',cursive;font-weight:400;font-size:clamp(24px,4vw,34px);text-align:center;margin:6px 0 8px}
   .block .sub{text-align:center;color:var(--ink-soft);max-width:560px;margin:0 auto 28px;font-size:15.5px}
-
-  /* ---------- HERO ---------- */
   header.hero{text-align:center;padding:30px 0 6px}
   .brand{font:700 13px 'Nunito';letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
   h1{font-family:'Chewy',cursive;font-weight:400;font-size:clamp(32px,6vw,54px);line-height:1.08;margin:12px 0 10px}
   h1 .name-slot{color:var(--blue-deep)}
   .promise{font-family:'Patrick Hand',cursive;font-size:clamp(18px,2.8vw,23px);font-weight:600;color:var(--ink);max-width:520px;margin:0 auto}
   .promise .num{font-family:'Nunito',sans-serif;font-weight:800;color:inherit}
-  .includes-line{font-size:13.5px;color:var(--blue-deep);font-weight:700;max-width:480px;margin:10px auto 0}
   .hero-cta{margin-top:22px}
   .hero-cta a{
     display:inline-flex;flex-direction:column;align-items:center;gap:2px;
@@ -53,8 +50,6 @@
   .hero-note{margin-top:10px;font-size:12.5px;color:var(--ink-soft)}
   .hero-cover{max-width:345px;margin:22px auto 0;border-radius:2px;
     box-shadow:6px 8px 0 rgba(90,61,46,.08), 0 2px 14px rgba(90,61,46,.14); overflow:hidden}
-
-  /* ---------- SAMPLE FLIP-THROUGH ---------- */
   .flip{display:flex;gap:14px;overflow-x:auto;padding:6px 4px 14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
   .flip::-webkit-scrollbar{height:8px}
   .flip::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
@@ -64,8 +59,6 @@
   .flip figcaption{font-size:12px;color:var(--ink-soft);text-align:center;padding:8px 6px}
   .flip-hint{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:2px}
   .sample-credit{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:6px}
-
-  /* ---------- HOW IT WORKS ---------- */
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
   @media(max-width:720px){.steps{grid-template-columns:1fr 1fr}}
   .step-card{text-align:center;background:rgba(255,255,255,.6);border:1px solid var(--line);border-radius:14px;padding:24px 14px}
@@ -74,16 +67,12 @@
   .step-card .emoji{font-size:46px;margin-bottom:10px;line-height:1}
   .step-card h4{font-size:18px;margin-bottom:6px}
   .step-card p{font-size:14.5px;color:var(--ink-soft);line-height:1.4}
-
-  /* ---------- TRUST BADGES ---------- */
   .badges{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
   @media(max-width:720px){.badges{grid-template-columns:1fr 1fr}}
   .badge{text-align:center;padding:14px 10px}
   .badge .emoji{font-size:22px;margin-bottom:6px}
   .badge h5{font-size:13px;margin-bottom:3px}
   .badge p{font-size:11.5px;color:var(--ink-soft)}
-
-  /* ---------- FORM AREA ---------- */
   .order-anchor{scroll-margin-top:16px}
   .layout{display:grid;gap:26px;margin-top:10px}
   @media(min-width:820px){.layout{grid-template-columns:1fr 380px;align-items:start}}
@@ -111,7 +100,6 @@
   .photo-ring .hint{font-family:'Patrick Hand';color:var(--ink-soft);font-size:15px;text-align:center;padding:0 18px}
   .cover .fancy-line{font-family:'Patrick Hand';font-size:13px;color:var(--ink-soft);margin-top:12px;min-height:18px;text-align:center}
   .preview-caption{text-align:center;font-size:12.5px;color:var(--ink-soft);margin-top:10px}
-
   form{display:flex;flex-direction:column;gap:16px}
   .step{background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:14px;padding:16px;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
   .step-tag{font-family:'Patrick Hand';color:var(--blue-deep);font-size:15px;letter-spacing:.03em}
@@ -122,7 +110,6 @@
   .field+.field{margin-top:10px}
   .count{float:right;font-weight:400;color:var(--ink-soft)}
   .help{font-size:12.5px;color:var(--ink-soft);margin-top:5px}
-
   .drop{border:2px dashed var(--sage);border-radius:12px;background:#fff;padding:22px 16px;text-align:center;cursor:pointer;transition:border-color .15s}
   .drop:hover,.drop:focus-visible{border-color:var(--blue)}
   .drop.has-file{border-style:solid;border-color:var(--blush)}
@@ -131,7 +118,6 @@
   .photo-tips{margin-top:12px;font-size:12.5px;color:var(--ink-soft)}
   .photo-tips b{color:var(--ink)}
   .photo-tips .extra-tip{display:block;margin-top:4px}
-
   .second-photo{margin-top:14px}
   .second-photo > summary{font-family:'Patrick Hand';color:var(--blue-deep);font-size:15px;cursor:pointer}
   .second-photo .drop{margin-top:10px;padding:16px}
@@ -139,7 +125,6 @@
   .second-photo-preview.filled{display:flex}
   .second-photo-preview img{width:52px;height:52px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
   .second-photo-preview span{font-size:12.5px;color:var(--ink-soft)}
-
   .choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .choice input{position:absolute;opacity:0}
   .choice div{border:1.5px solid var(--line);border-radius:10px;background:#fff;padding:12px;text-align:center;cursor:pointer;font-weight:600;font-size:15px}
@@ -151,14 +136,12 @@
   .tier .t-price{font-family:'Chewy';font-size:22px;color:var(--blue-deep);margin:2px 0}
   .tier .t-desc{font-size:12.5px;color:var(--ink-soft);font-weight:400}
   .tier .t-desc b{display:block;font-size:13.5px;color:var(--blue-deep);font-weight:800;margin-top:2px}
-
   .cta{font-family:'Chewy',cursive;font-size:22px;letter-spacing:.02em;color:#fff;background:var(--blue);border:none;border-radius:12px;padding:16px;cursor:pointer;width:100%;box-shadow:0 4px 0 var(--blue-deep)}
   .cta:hover{background:var(--blue-deep)}
   .cta:disabled{background:#B9C4CF;box-shadow:none;cursor:not-allowed}
   .cta-note{text-align:center;font-size:12.5px;color:var(--ink-soft);margin-top:10px}
   .error{display:none;background:#FBF0EE;border:1px solid var(--blush);color:#8A4A3D;border-radius:9px;padding:10px 12px;font-size:13.5px;margin-top:10px}
   .error.show{display:block}
-
   footer{text-align:center;margin-top:56px;font-size:12.5px;color:var(--ink-soft)}
   @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
 </style>
@@ -166,8 +149,6 @@
 <body>
 <div class="washes" aria-hidden="true"><span class="w1"></span><span class="w2"></span><span class="w3"></span><span class="w4"></span></div>
 <main>
-
-  <!-- ============ HERO ============ -->
   <header class="hero">
     <div class="brand">Sun Valley Pet · Personalized Memorial Books</div>
     <h1>A Life Well-Loved <span class="name-slot" id="heroName">of Your Dog</span></h1>
@@ -177,7 +158,6 @@
     <p class="hero-note">Takes about 2 minutes · you approve the cover before it prints</p>
   </header>
 
-  <!-- ============ SAMPLE FLIP-THROUGH ============ -->
   <section class="block">
     <div class="kicker">A Real Book We Made</div>
     <h2>Flip Through Randy's Story</h2>
@@ -204,7 +184,6 @@
     <p class="sample-credit">Sample book stars Randy. Yours will star your dog, painted in this same style.</p>
   </section>
 
-  <!-- ============ HOW IT WORKS ============ -->
   <section class="block">
     <div class="kicker">Simple &amp; Gentle</div>
     <h2>How It Works</h2>
@@ -216,7 +195,6 @@
     </div>
   </section>
 
-  <!-- ============ TRUST BADGES ============ -->
   <section class="block">
     <div class="badges">
       <div class="badge"><div class="emoji">🔒</div><h5>Photo Kept Private</h5><p>Never shared or sold</p></div>
@@ -226,7 +204,6 @@
     </div>
   </section>
 
-  <!-- ============ ORDER FORM ============ -->
   <section class="block order-anchor" id="order">
     <div class="kicker">Their Turn</div>
     <h2>Create Their Tribute Book</h2>
@@ -458,6 +435,21 @@
     });
   }
 
+  function uploadPhoto(file){
+    return validateAndNormalizePhoto(file).then(function(dataUrl){
+      return fetch('/.netlify/functions/upload-photo', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ filename: file.name, data: dataUrl })
+      }).then(function(r){
+        if(!r.ok) return r.json().catch(function(){return {};}).then(function(j){
+          throw new Error('photo upload: ' + (j.error || ('code ' + r.status)));
+        });
+        return r.json();
+      }).then(function(up){ return up.photoId; });
+    });
+  }
+
   document.getElementById('orderForm').addEventListener('submit', function(e){
     e.preventDefault(); hideErr();
     var name = callName.value.trim();
@@ -467,29 +459,22 @@
 
     btn.disabled = true; btn.textContent = 'Getting your book ready…';
 
-    var lastDataUrlSize = 0;
-    validateAndNormalizePhoto(photoFile)
-      .then(function(dataUrl){
-        lastDataUrlSize = dataUrl.length;
-        return fetch('/.netlify/functions/upload-photo', {
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({ filename: photoFile.name, data: dataUrl })
-        });
-      })
-      .then(function(r){
-        if(!r.ok) return r.json().catch(function(){return {};}).then(function(j){
-          var sizeInfo = ' [sent ' + Math.round(lastDataUrlSize/1024) + 'KB, original file ' + Math.round(photoFile.size/1024) + 'KB, type ' + (photoFile.type || 'unknown') + ']';
-          throw new Error('photo upload: ' + (j.error || ('code ' + r.status)) + sizeInfo);
-        });
-        return r.json();
-      })
-      .then(function(up){
+    // Upload BOTH photos (second one only if provided) — FIXED: the
+    // second photo's upload UI existed, but the submit handler
+    // previously never actually sent it anywhere, so a customer's
+    // "younger photo" for the aging-arc feature would have been
+    // silently discarded. Uploaded in parallel for speed.
+    var uploadPromises = [uploadPhoto(photoFile)];
+    uploadPromises.push(photoFile2 ? uploadPhoto(photoFile2) : Promise.resolve(null));
+
+    Promise.all(uploadPromises)
+      .then(function(photoIds){
         return fetch('/.netlify/functions/create-checkout', {
           method:'POST',
           headers:{'Content-Type':'application/json'},
           body: JSON.stringify({
-            photoId: up.photoId,
+            photoId: photoIds[0],
+            photoId2: photoIds[1],
             callName: name,
             fancyName: fancyName.value.trim(),
             yearsTogether: document.getElementById('yearsTogether').value.trim(),
