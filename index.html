@@ -437,7 +437,12 @@
 
   function uploadPhoto(file){
     return validateAndNormalizePhoto(file).then(function(dataUrl){
-      return fetch('/.netlify/functions/upload-photo', {
+      // Points at the SHARED backend on dogillustrationbooks.netlify.app
+      // rather than a local copy — this site no longer needs its own
+      // upload-photo.js/create-checkout.js/webhook at all; those are
+      // now retired in favor of the shared, registry-driven pipeline.
+      var SHARED_BACKEND = 'https://dogillustrationbooks.netlify.app';
+      return fetch(SHARED_BACKEND + '/.netlify/functions/upload-photo', {
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body: JSON.stringify({ filename: file.name, data: dataUrl })
@@ -469,10 +474,11 @@
 
     Promise.all(uploadPromises)
       .then(function(photoIds){
-        return fetch('/.netlify/functions/create-checkout', {
+        return fetch(SHARED_BACKEND + '/.netlify/functions/create-checkout', {
           method:'POST',
           headers:{'Content-Type':'application/json'},
           body: JSON.stringify({
+            bookType: 'life-well-loved',
             photoId: photoIds[0],
             photoId2: photoIds[1],
             callName: name,
