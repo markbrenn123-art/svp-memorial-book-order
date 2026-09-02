@@ -297,6 +297,11 @@
 <script>
 (function(){
   var photoInput = document.getElementById('photo');
+  // Shared backend for both the photo upload and checkout calls below —
+  // must be declared here, at top level, so it's visible to BOTH the
+  // uploadPhoto() helper AND the submit handler's create-checkout call,
+  // not just one of them.
+  var SHARED_BACKEND = 'https://dogillustrationbooks.netlify.app';
   var drop = document.getElementById('drop');
   var ring = document.getElementById('photoRing');
   var callName = document.getElementById('callName');
@@ -438,10 +443,10 @@
   function uploadPhoto(file){
     return validateAndNormalizePhoto(file).then(function(dataUrl){
       // Points at the SHARED backend on dogillustrationbooks.netlify.app
-      // rather than a local copy — this site no longer needs its own
-      // upload-photo.js/create-checkout.js/webhook at all; those are
-      // now retired in favor of the shared, registry-driven pipeline.
-      var SHARED_BACKEND = 'https://dogillustrationbooks.netlify.app';
+      // (declared once, at top level, above) rather than a local copy —
+      // this site no longer needs its own upload-photo.js/
+      // create-checkout.js/webhook at all; those are now retired in
+      // favor of the shared, registry-driven pipeline.
       return fetch(SHARED_BACKEND + '/.netlify/functions/upload-photo', {
         method:'POST',
         headers:{'Content-Type':'application/json'},
