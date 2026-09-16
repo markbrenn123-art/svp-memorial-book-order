@@ -1,91 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org/",
-  "@type": "Product",
-  "name": "A Life Well-Loved - Personalized Dog Memorial Book",
-  "image": "https://memorial.sunvalleypet.com/assets/memorial-sample-cover.jpg",
-  "description": "One photo becomes a 32-page watercolor keepsake celebrating your dog's whole life, from puppy days to the Rainbow Bridge.",
-  "brand": {
-    "@type": "Brand",
-    "name": "Sun Valley Pet"
-  },
-  "offers": [
-    {
-      "@type": "Offer",
-      "name": "Softcover",
-      "price": "29.95",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
-      "url": "https://memorial.sunvalleypet.com/#order"
-    },
-    {
-      "@type": "Offer",
-      "name": "Hardcover",
-      "price": "44.95",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
-      "url": "https://memorial.sunvalleypet.com/#order"
-    }
-  ]
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org/",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How does the dog memorial book work?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Upload one or two photos of your dog, share their name and years together, and choose softcover or hardcover. We paint a 32-page watercolor journey through their whole life, you approve the cover before the rest is made, then it's printed and shipped as a keepsake."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I include a puppy photo and an older photo?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, adding a second, younger photo lets us paint their full journey from puppy to golden years."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I approve the book before it's printed?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. You'll see the cover illustration before the rest of the book is made and printed."
-      }
-    }
-  ]
-}
-</script>
 <head>
 <meta charset="UTF-8">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐾</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Personalized Dog Memorial Book | Watercolor Pet Tribute | From $29.95</title>
 <meta name="description" content="Upload one photo — we paint a 32-page watercolor memorial book celebrating your dog's whole life. See the cover before we make the rest. Softcover from $29.95.">
-<meta property="og:type" content="product">
-<meta property="og:title" content="A Life Well-Loved — Personalized Dog Memorial Book | Sun Valley Pet">
-<meta property="og:description" content="One photo becomes a 32-page watercolor keepsake celebrating your dog's whole life. Softcover from $29.95.">
-<meta property="og:image" content="https://memorial.sunvalleypet.com/assets/og-share-image.jpg">
-<meta property="og:url" content="https://memorial.sunvalleypet.com/">
-<meta property="og:site_name" content="Sun Valley Pet">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="A Life Well-Loved — Personalized Dog Memorial Book">
-<meta name="twitter:description" content="One photo becomes a 32-page watercolor keepsake celebrating your dog's whole life. Softcover from $29.95.">
-<meta name="twitter:image" content="https://memorial.sunvalleypet.com/assets/og-share-image.jpg">
-
-<meta property="og:price:amount" content="29.95">
-<meta property="og:price:currency" content="USD"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Patrick+Hand&family=Nunito:wght@400;600;700;800&display=optional" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Patrick+Hand&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#FFFDF4; --ink:#5A3D2E; --ink-soft:#6B5040;
@@ -127,7 +50,6 @@
   .hero-note{margin-top:10px;font-size:12.5px;color:var(--ink-soft)}
   .hero-cover{max-width:345px;margin:22px auto 0;border-radius:2px;
     box-shadow:6px 8px 0 rgba(90,61,46,.08), 0 2px 14px rgba(90,61,46,.14); overflow:hidden}
-  .hero-cover img{aspect-ratio:1/1;object-fit:cover}
   .flip{display:flex;gap:14px;overflow-x:auto;padding:6px 4px 14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
   .flip::-webkit-scrollbar{height:8px}
   .flip::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
@@ -227,6 +149,7 @@
 <body>
 <div class="washes" aria-hidden="true"><span class="w1"></span><span class="w2"></span><span class="w3"></span><span class="w4"></span></div>
 <main>
+
   <header class="hero">
     <div class="brand">Sun Valley Pet · Personalized Memorial Books</div>
     <h1>A Life Well-Loved <span class="name-slot" id="heroName">of Your Dog</span></h1>
@@ -376,10 +299,18 @@
 (function(){
   var photoInput = document.getElementById('photo');
   // Shared backend for both the photo upload and checkout calls below —
-  // must be declared here, at top level, so it's visible to BOTH the
-  // uploadPhoto() helper AND the submit handler's create-checkout call,
-  // not just one of them.
-  var SHARED_BACKEND = 'https://dogillustrationbooks.netlify.app';
+  // declared here, at top level, so it's visible to BOTH the
+  // uploadPhoto() helper AND the submit handler's create-checkout call.
+  //
+  // FIXED: this previously pointed at the OLD domain
+  // (dogillustrationbooks.netlify.app), which now just 301-redirects to
+  // this new one. A fetch() that gets redirected to a DIFFERENT origin
+  // is exactly the kind of thing browsers handle badly for CORS
+  // requests — it commonly fails outright with a generic "Failed to
+  // fetch", regardless of how correct the final destination's own CORS
+  // headers are. Pointing directly at the real, current domain removes
+  // the redirect hop entirely.
+  var SHARED_BACKEND = 'https://dogbook.sunvalleypet.com';
   var drop = document.getElementById('drop');
   var ring = document.getElementById('photoRing');
   var callName = document.getElementById('callName');
@@ -520,11 +451,6 @@
 
   function uploadPhoto(file){
     return validateAndNormalizePhoto(file).then(function(dataUrl){
-      // Points at the SHARED backend on dogillustrationbooks.netlify.app
-      // (declared once, at top level, above) rather than a local copy —
-      // this site no longer needs its own upload-photo.js/
-      // create-checkout.js/webhook at all; those are now retired in
-      // favor of the shared, registry-driven pipeline.
       return fetch(SHARED_BACKEND + '/.netlify/functions/upload-photo', {
         method:'POST',
         headers:{'Content-Type':'application/json'},
@@ -547,11 +473,6 @@
 
     btn.disabled = true; btn.textContent = 'Getting your book ready…';
 
-    // Upload BOTH photos (second one only if provided) — FIXED: the
-    // second photo's upload UI existed, but the submit handler
-    // previously never actually sent it anywhere, so a customer's
-    // "younger photo" for the aging-arc feature would have been
-    // silently discarded. Uploaded in parallel for speed.
     var uploadPromises = [uploadPhoto(photoFile)];
     uploadPromises.push(photoFile2 ? uploadPhoto(photoFile2) : Promise.resolve(null));
 
