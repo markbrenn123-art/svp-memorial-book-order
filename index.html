@@ -298,19 +298,6 @@
 <script>
 (function(){
   var photoInput = document.getElementById('photo');
-  // Shared backend for both the photo upload and checkout calls below —
-  // declared here, at top level, so it's visible to BOTH the
-  // uploadPhoto() helper AND the submit handler's create-checkout call.
-  //
-  // FIXED: this previously pointed at the OLD domain
-  // (dogillustrationbooks.netlify.app), which now just 301-redirects to
-  // this new one. A fetch() that gets redirected to a DIFFERENT origin
-  // is exactly the kind of thing browsers handle badly for CORS
-  // requests — it commonly fails outright with a generic "Failed to
-  // fetch", regardless of how correct the final destination's own CORS
-  // headers are. Pointing directly at the real, current domain removes
-  // the redirect hop entirely.
-  var SHARED_BACKEND = 'https://dogbook.sunvalleypet.com';
   var drop = document.getElementById('drop');
   var ring = document.getElementById('photoRing');
   var callName = document.getElementById('callName');
@@ -449,9 +436,12 @@
     });
   }
 
+  // FIXED: uses simple relative paths, exactly like dogbook.sunvalleypet.com's
+  // own proven, working front-end — same-origin calls, no CORS involved
+  // at all, no cross-origin backend dependency.
   function uploadPhoto(file){
     return validateAndNormalizePhoto(file).then(function(dataUrl){
-      return fetch(SHARED_BACKEND + '/.netlify/functions/upload-photo', {
+      return fetch('/.netlify/functions/upload-photo', {
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body: JSON.stringify({ filename: file.name, data: dataUrl })
@@ -478,11 +468,10 @@
 
     Promise.all(uploadPromises)
       .then(function(photoIds){
-        return fetch(SHARED_BACKEND + '/.netlify/functions/create-checkout', {
+        return fetch('/.netlify/functions/create-checkout', {
           method:'POST',
           headers:{'Content-Type':'application/json'},
           body: JSON.stringify({
-            bookType: 'life-well-loved',
             photoId: photoIds[0],
             photoId2: photoIds[1],
             callName: name,
