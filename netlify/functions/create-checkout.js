@@ -1,16 +1,28 @@
 // Creates a Stripe Checkout Session for a memorial book order.
 //
-// Mirrors dogbook.sunvalleypet.com's proven, working create-checkout.js
-// structure exactly — same-origin call, no CORS needed. This site is
-// dedicated to one product, so unlike the shared-backend version, there's
-// no bookType parameter to look up — pricing env vars use the same
-// simple PRICE_HARDCOVER/PRICE_SOFTCOVER names daybook uses, just scoped
-// to THIS Netlify project's own env vars. Makes this file a genuine,
-// repeatable template: a future product site (SuperMom, employee book,
-// etc.) copies this same structure with its own PRICE_* env vars.
+// CORRECTED ARCHITECTURE: stays LOCAL (same-origin, no CORS) for the
+// browser-facing upload/checkout steps, but routes everything downstream
+// through daybook's ALREADY-BUILT, ALREADY-WORKING shared system —
+// webhook, approval, PDF generation, Gelato submission, and admin
+// visibility — via the book-types.js registry ("life-well-loved" entry).
+//
+// KEY INSIGHT: the CORS problem from earlier only affects
+// browser-initiated fetch() calls. Stripe's webhook is server-to-server
+// — Stripe's own servers calling ours — and was NEVER subject to CORS
+// at all. Same for the success_url redirect: a full page navigation is
+// not a fetch/XHR call, so it isn't CORS-restricted either. This means
+// memorial never needed its own webhook, approval page, or admin —
+// only the two truly browser-initiated pieces (photo upload, checkout
+// creation) needed to stay same-origin.
+//
+// This means memorial orders will now show up automatically in
+// dogbook.sunvalleypet.com/admin.html — no separate admin needed.
 //
 // Env vars required: STRIPE_SECRET_KEY, PRICE_SOFTCOVER, PRICE_HARDCOVER,
-//   SITE_URL
+//   DAYBOOK_SITE_URL (daybook's own domain, for the shared approve.html
+//   redirect — separate from this site's own SITE_URL, used only for
+//   the cancel_url so a canceled checkout returns to THIS site's
+//   homepage, not daybook's).
 import Stripe from "stripe";
 import { randomUUID } from "node:crypto";
 
@@ -49,12 +61,25 @@ export default async (req) => {
           },
         },
       }],
+      // bookType tells daybook's ALREADY-BUILT shared webhook and
+      // approve-order-background.js to route this order through the
+      // registry's "life-well-loved" config — same mechanism the
+      // preview-admin.html tool already proved works for this product.
+      // field3 is the registry's generic name for this product's third
+      // field (years together) — mapped here so the shared backend's
+      // existing field3 handling picks it up correctly.
       metadata: {
         photoId, photoId2: photoId2 || "", callName, fancyName: fancyName || "",
-        yearsTogether: yearsTogether || "", pronoun, format, orderId,
+        field3: yearsTogether || "", pronoun, format, orderId,
+        bookType: "life-well-loved",
       },
-      success_url: `${process.env.SITE_URL}/approve.html?order=${orderId}`,
-      cancel_url: `${process.env.SITE_URL}/`,
+      // Points at DAYBOOK's approve.html — the shared, already-working
+      // approval page — not this site's own (nonexistent) one. This is
+      // a full page navigation, not a fetch call, so it's not affected
+      // by CORS at all.
+      success_url: `${process.env.DAYBOOK_SITE_URL}/approve.html?order=${orderId}`,
+      // Cancel returns to THIS site's own homepage, not daybook's.
+      cancel_url: `${process.env.SITE_URL || "https://memorial.sunvalleypet.com"}/`,
     });
     return Response.json({ url: session.url });
   } catch (e) {
