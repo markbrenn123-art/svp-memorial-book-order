@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Approve Your Book Cover | Sun Valley Pet</title>
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Patrick+Hand&family=Nunito:wght@400;600;700;800&display=optional" rel="stylesheet">
+<style>
+  :root{ --paper:#FFFDF4; --ink:#5A3D2E; --ink-soft:#6B5040; --blue:#5C7FA8; --blue-deep:#48688C; --blush:#E8B9B0; --line:#E9E0CE; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Nunito',sans-serif;color:var(--ink);background:var(--paper);line-height:1.5;text-align:center;padding:32px 20px}
+  h1{font-family:'Chewy',cursive;font-weight:400;font-size:clamp(24px,5vw,34px);margin-bottom:10px}
+  p{font-size:15px;color:var(--ink-soft);max-width:420px;margin:0 auto 20px}
+  .cover-frame{max-width:340px;margin:20px auto;border-radius:10px;overflow:hidden;border:1px solid var(--line);box-shadow:6px 8px 0 rgba(90,61,46,.08)}
+  .cover-frame img{width:100%;display:block;aspect-ratio:1/1;object-fit:cover;background:#fff}
+  .hourglass{font-size:48px;margin:40px 0;animation:spin 2s linear infinite}
+  @keyframes spin{ from{transform:rotate(0)} to{transform:rotate(360deg)} }
+  .btn{font-family:'Chewy',cursive;font-size:19px;color:#fff;background:var(--blue);border:none;padding:14px 30px;border-radius:12px;box-shadow:0 4px 0 var(--blue-deep);cursor:pointer;margin-top:10px}
+  .btn:disabled{background:#B9C4CF;box-shadow:none;cursor:wait}
+  .err{color:#8A4A3D;background:#FBF0EE;border:1px solid var(--blush);border-radius:9px;padding:10px 14px;margin-top:16px;display:none}
+  .exit{display:inline-block;margin-top:28px;font-size:13px;color:var(--ink-soft)}
+  #doneScreen{display:none}
+</style>
+</head>
+<body>
+
+  <div id="loadingScreen">
+    <h1>Painting Your Cover…</h1>
+    <p>This usually takes about a minute.</p>
+    <div class="hourglass">⏳</div>
+  </div>
+
+  <div id="reviewScreen" style="display:none">
+    <h1>Here's Their Cover</h1>
+    <p>Take a look — once you approve, we'll paint the rest of the book.</p>
+    <div class="cover-frame"><img id="coverImg" alt="Your book cover"></div>
+    <button class="btn" id="approveBtn">Approve — Paint My Book!</button>
+    <div class="err" id="errBox"></div>
+  </div>
+
+  <div id="doneScreen">
+    <h1>Thank You! 🎨</h1>
+    <p>We're painting the rest of the book now. You'll hear from us once it's ready to ship — no further action needed from you.</p>
+  </div>
+
+  <a class="exit" href="https://memorial.sunvalleypet.com">← Return to Sun Valley Pet</a>
+
+<script>
+(function(){
+  var orderId = new URLSearchParams(window.location.search).get('order');
+  var loadingScreen = document.getElementById('loadingScreen');
+  var reviewScreen = document.getElementById('reviewScreen');
+  var doneScreen = document.getElementById('doneScreen');
+  var approveBtn = document.getElementById('approveBtn');
+  var errBox = document.getElementById('errBox');
+
+  if (!orderId) {
+    loadingScreen.innerHTML = '<h1>Order not found</h1><p>This link is missing an order reference. Please check your email for the correct link.</p>';
+  }
+
+  function showErr(msg){ errBox.textContent = msg; errBox.style.display = 'block'; }
+
+  function waitForStatusChange(targetStatuses, onReach, attempt) {
+    attempt = attempt || 0;
+    fetch('/.netlify/functions/get-order?order=' + encodeURIComponent(orderId) + '&t=' + Date.now())
+      .then(function(r){ return r.json(); })
+      .then(function(order){
+        if (order.error) { throw new Error(order.error); }
+        if (targetStatuses.indexOf(order.status) !== -1) {
+          onReach(order);
+          return;
+        }
+        if (order.status === 'error') {
+          throw new Error(order.errorMessage || 'Something went wrong while preparing your book.');
+        }
+        if (attempt > 100) { // ~5 minutes
+          throw new Error('This is taking longer than expected. Please check back in a few minutes, or contact us.');
+        }
+        setTimeout(function(){ waitForStatusChange(targetStatuses, onReach, attempt + 1); }, 3000);
+      })
+      .catch(function(e){
+        loadingScreen.style.display = 'none';
+        reviewScreen.style.display = 'none';
+        doneScreen.style.display = 'block';
+        doneScreen.innerHTML = '<h1>Hmm, something went wrong</h1><p>' + e.message + '</p><p style="margin-top:16px">Please contact us and we will sort it out right away.</p>';
+      });
+  }
+
+  // Re-check promptly when the tab regains focus (mobile browsers often
+  // throttle background timers).
+  document.addEventListener('visibilitychange', function(){
+    if (document.visibilityState === 'visible' && loadingScreen.style.display !== 'none') {
+      waitForStatusChange(['pending_cover_approval', 'cover_approved_retry'], showCoverForApproval);
+    }
+  });
+
+  function showCoverForApproval(order) {
+    loadingScreen.style.display = 'none';
+    reviewScreen.style.display = 'block';
+    document.getElementById('coverImg').src = '/.netlify/functions/get-image?order=' + encodeURIComponent(orderId) + '&img=IMG-00&t=' + Date.now();
+  }
+
+  if (orderId) {
+    waitForStatusChange(['pending_cover_approval', 'cover_approved_retry'], showCoverForApproval);
+  }
+
+  approveBtn.addEventListener('click', function(){
+    approveBtn.disabled = true;
+    approveBtn.textContent = 'Getting started…';
+    errBox.style.display = 'none';
+
+    fetch('/.netlify/functions/approve-order-background', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ orderId: orderId })
+    }).catch(function(){}); // fire-and-forget — background function
+
+    setTimeout(function(){
+      reviewScreen.style.display = 'none';
+      loadingScreen.style.display = 'block';
+      loadingScreen.innerHTML = '<h1>Wonderful!</h1><p>We are painting the rest of the book now.</p><div class="hourglass">\u23F3</div>';
+      waitForStatusChange(['ready_for_manual_review', 'sent_to_print'], function(){
+        loadingScreen.style.display = 'none';
+        doneScreen.style.display = 'block';
+      });
+    }, 1500);
+  });
+})();
+</script>
+</body>
+</html>
