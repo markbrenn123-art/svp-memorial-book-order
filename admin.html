@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orders | Sun Valley Pet Memorial Admin</title>
+<style>
+  body{font-family:system-ui,sans-serif;background:#FFFDF4;color:#5A3D2E;margin:0;padding:24px}
+  h1{font-size:24px;margin-bottom:4px}
+  .tabs{display:flex;gap:6px;margin-bottom:20px;border-bottom:2px solid #E9E0CE}
+  .tab{padding:10px 18px;font:600 14px system-ui;color:#6B5040;background:none;border:none;cursor:pointer;
+    border-bottom:3px solid transparent;margin-bottom:-2px}
+  .tab.active{color:#48688C;border-bottom-color:#5C7FA8}
+  .card{background:#fff;border:1px solid #E9E0CE;border-radius:12px;padding:18px;margin-bottom:20px;
+        display:flex;gap:20px;flex-wrap:wrap}
+  .cover-preview{flex:0 0 220px}
+  .cover-preview img{width:220px;height:220px;object-fit:cover;border-radius:10px;border:1px solid #E9E0CE;display:block}
+  .card-main{flex:1;min-width:260px;display:flex;flex-direction:column}
+  .info .name{font-weight:700;font-size:17px}
+  .info .meta{font-size:13px;color:#6B5040}
+  .status-badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;
+    margin-left:8px;vertical-align:middle;background:#DFF3E3;color:#2E7D32}
+  .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .actions a, .actions button{
+    font:600 13px system-ui;padding:9px 14px;border-radius:7px;border:none;cursor:pointer;text-decoration:none;
+  }
+  .view-pdf{background:#EAF0F6;color:#48688C}
+  .approve-btn{background:#4B8A5E;color:#fff;font-weight:700}
+  .approve-btn:disabled{opacity:.6;cursor:wait}
+  .empty{color:#6B5040;font-style:italic}
+  .err{color:#B85C4A;font-size:13px;margin-top:6px}
+  .lock-screen{max-width:340px;margin:80px auto;text-align:center}
+  .lock-screen input{width:100%;padding:10px;font-size:15px;border:1px solid #E9E0CE;border-radius:8px;margin:14px 0}
+  .lock-screen button{width:100%;padding:12px;font-size:15px;font-weight:700;background:#5C7FA8;color:#fff;border:none;border-radius:8px;cursor:pointer}
+</style>
+</head>
+<body>
+  <div id="lockScreen" class="lock-screen">
+    <h1>Admin Login</h1>
+    <p style="font-size:13px;color:#6B5040">Enter the admin password to view memorial book orders.</p>
+    <input type="password" id="pwInput" placeholder="Password">
+    <button id="pwSubmit">Unlock</button>
+    <div class="err" id="pwErr"></div>
+  </div>
+
+  <div id="mainScreen" style="display:none">
+    <h1>Memorial Book Orders</h1>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-status="ready_for_manual_review">Awaiting Review</button>
+      <button class="tab" data-status="sent_to_print">Sent to Print</button>
+    </div>
+    <div id="list"></div>
+  </div>
+
+<script>
+var ADMIN_PW_KEY = 'svp_memorial_admin_pw';
+var currentTab = 'ready_for_manual_review';
+
+function getStoredPassword(){ return sessionStorage.getItem(ADMIN_PW_KEY) || ''; }
+function setStoredPassword(pw){ sessionStorage.setItem(ADMIN_PW_KEY, pw); }
+function clearStoredPassword(){ sessionStorage.removeItem(ADMIN_PW_KEY); }
+
+function showLockScreen(errMsg){
+  document.getElementById('lockScreen').style.display = 'block';
+  document.getElementById('mainScreen').style.display = 'none';
+  document.getElementById('pwErr').textContent = errMsg || '';
+}
+function showMainScreen(){
+  document.getElementById('lockScreen').style.display = 'none';
+  document.getElementById('mainScreen').style.display = 'block';
+}
+function authedFetch(url, options){
+  options = options || {};
+  options.headers = options.headers || {};
+  options.headers['X-Admin-Password'] = getStoredPassword();
+  return fetch(url, options);
+}
+
+function coverImgUrl(orderId){
+  return '/.netlify/functions/get-image?order=' + encodeURIComponent(orderId) + '&img=IMG-00&t=' + Date.now();
+}
+
+function buildCard(order, viewMode){
+  var card = document.createElement('div');
+  card.className = 'card';
+
+  var statusBadge = viewMode === 'sent' ? '<span class="status-badge">SENT</span>' : '';
+
+  var actionsHtml = '<a class="view-pdf" href="/.netlify/functions/get-pdf?order=' + order.orderId + '&t=' + Date.now() + '" target="_blank">View PDF</a>';
+
+  if (viewMode === 'review') {
+    actionsHtml += '<button class="approve-btn" data-order="' + order.orderId + '">Approve &amp; Send to Gelato</button>';
+  } else if (viewMode === 'sent') {
+    actionsHtml += order.gelatoOrderId ? '<span class="meta" style="align-self:center">Gelato Order: ' + order.gelatoOrderId + '</span>' : '';
+  }
+
+  card.innerHTML =
+    '<div class="cover-preview"><img src="' + coverImgUrl(order.orderId) + '" alt="Cover"></div>' +
+    '<div class="card-main">' +
+      '<div class="info">' +
+        '<div class="name">' + order.callName + ' \u2014 ' + order.format + statusBadge + '</div>' +
+        '<div class="meta">' + (order.customerEmail || 'no email') + ' \u00B7 ' + new Date(order.createdAt).toLocaleString() + '</div>' +
+        '<div class="meta">Order ID: ' + order.orderId + '</div>' +
+      '</div>' +
+      '<div class="actions">' + actionsHtml + '</div>' +
+      '<div class="err" style="display:none"></div>' +
+    '</div>';
+  return card;
+}
+
+function loadOrders(statusFilter){
+  currentTab = statusFilter;
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.classList.toggle('active', t.dataset.status === statusFilter);
+  });
+  var viewMode = statusFilter === 'ready_for_manual_review' ? 'review' : 'sent';
+
+  authedFetch('/.netlify/functions/list-held-orders?status=' + encodeURIComponent(statusFilter))
+    .then(function(r){
+      if(r.status === 401){ clearStoredPassword(); showLockScreen('Incorrect password.'); throw new Error('unauthorized'); }
+      if(!r.ok) throw new Error('Function returned status ' + r.status);
+      return r.json();
+    })
+    .then(function(data){
+      showMainScreen();
+      var list = document.getElementById('list');
+      list.innerHTML = '';
+      if(!data.held.length){
+        list.innerHTML = '<p class="empty">' + (viewMode === 'review' ? 'No orders currently waiting for review.' : 'No orders sent to print yet.') + '</p>';
+        return;
+      }
+      data.held.forEach(function(order){ list.appendChild(buildCard(order, viewMode)); });
+      attachHandlers(list, viewMode);
+    })
+    .catch(function(e){
+      if (e.message !== 'unauthorized') {
+        document.getElementById('list').innerHTML = '<p class="err">Could not load: ' + e.message + '</p>';
+        showMainScreen();
+      }
+    });
+}
+
+function attachHandlers(list, viewMode){
+  if (viewMode !== 'review') return;
+  list.querySelectorAll('.approve-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if(!confirm('Send this order to Gelato for real production? This ships a real book and cannot be undone.')) return;
+      btn.disabled = true; btn.textContent = 'Sending...';
+      authedFetch('/.netlify/functions/mark-order-sent', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ orderId: btn.dataset.order })
+      })
+      .then(function(r){ return r.json().then(function(j){ return {ok:r.ok, j:j}; }); })
+      .then(function(res){
+        if(!res.ok){ throw new Error(res.j.error || 'Unknown error'); }
+        loadOrders(currentTab);
+      })
+      .catch(function(e){
+        var errEl = btn.closest('.card').querySelector('.err');
+        errEl.style.display = 'block'; errEl.textContent = e.message;
+        btn.disabled = false; btn.textContent = 'Approve & Send to Gelato';
+      });
+    });
+  });
+}
+
+document.querySelectorAll('.tab').forEach(function(tab){
+  tab.addEventListener('click', function(){ loadOrders(tab.dataset.status); });
+});
+
+document.getElementById('pwSubmit').addEventListener('click', function(){
+  var pw = document.getElementById('pwInput').value;
+  if(!pw){ document.getElementById('pwErr').textContent = 'Please enter a password.'; return; }
+  setStoredPassword(pw);
+  loadOrders('ready_for_manual_review');
+});
+document.getElementById('pwInput').addEventListener('keydown', function(e){
+  if(e.key === 'Enter') document.getElementById('pwSubmit').click();
+});
+
+if(getStoredPassword()){
+  loadOrders('ready_for_manual_review');
+} else {
+  showLockScreen();
+}
+</script>
+</body>
+</html>
